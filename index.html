@@ -16,55 +16,17 @@
             line-height: 1.6;
         }
 
-        /* Navigation Styles */
-        .main-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.9);
-        }
-
-        .logo {
-            height: 50px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        /* Secondary Navigation */
-        .secondary-nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 1rem;
-            background: linear-gradient(90deg, #8B4513, #4682B4);
-        }
-
-        .secondary-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border: 1px solid white;
-            border-radius: 20px;
-        }
-
-        /* Hero Section */
         .hero-container {
             position: relative;
-            height: calc(100vh - 120px);
+            height: 100vh;
+            width: 100%;
             overflow: hidden;
         }
 
         .image-gallery {
             display: flex;
             height: 100%;
+            width: 100%;
         }
 
         .gallery-image {
@@ -72,10 +34,6 @@
             background-size: cover;
             background-position: center;
             transition: flex 0.5s ease;
-        }
-
-        .gallery-image:hover {
-            flex: 1.5;
         }
 
         .hero-overlay {
@@ -86,18 +44,16 @@
             text-align: center;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            width: 80%;
+            width: 90%;
             max-width: 800px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
         }
 
         .hero-title {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            margin: 1rem 0;
         }
 
         .hero-description {
@@ -118,25 +74,95 @@
         .start-button:hover {
             background-color: #0056b3;
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .image-gallery {
+                /* Hide second and third images on mobile */
+                display: block;
+            }
+
+            .gallery-image:not(:first-child) {
+                display: none;
+            }
+
+            .gallery-image:first-child {
+                width: 100%;
+                height: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+        }
+
+        .home-nav-bar {
+            width: 100%;
+            height: 65px;
+            background: linear-gradient(to right,
+            #624877,
+            #eb5c47,
+            #0850ca,
+            #c7eaf3
+            );
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            color: white;
+            font-size: 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: #e3f2fd solid 2px;
+        }
+
+        .home-nav-bar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .home-nav-bar a:hover {
+            color: #ffd700;
+        }
+
+        .home-nav-bar button {
+            background: none;
+            border: 3px solid white;
+            color: white;
+            padding: 11px 26px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        .home-nav-bar button:hover {
+            background-color: white;
+            color: black;
+        }
+
+
     </style>
 </head>
 <body>
-<!--<nav class="main-nav">-->
-<!--    <img src="/api/placeholder/100/50" alt="Missouri River Valley Loop Logo" class="logo">-->
-<!--    <div class="nav-links">-->
-<!--        <a href="#home">Home</a>-->
-<!--        <a href="#towns">Towns</a>-->
-<!--        <a href="/src/events/events.html">Events</a>-->
-<!--        <a href="#about">About</a>-->
-<!--        <a href="#contact">Contact</a>-->
-<!--    </div>-->
-<!--</nav>-->
+<div class="home-nav-bar">
+    <button onclick="window.location.href='/wheretostay'">Where to Stay</button>
+    <button onclick="window.location.href='/sponsors'">Sponsors</button>
+    <button onclick="window.location.href='/directions'">Directions</button>
+</div>
 
-<!--<nav class="secondary-nav">-->
-<!--    <a href="#where-to-stay">Where to Stay</a>-->
-<!--    <a href="#sponsors">Sponsors</a>-->
-<!--    <a href="#directions">Directions</a>-->
-<!--</nav>-->
 
 <main class="hero-container">
     <div class="image-gallery">
@@ -145,7 +171,7 @@
         <div class="gallery-image" style="background-image: url('images/towns/new-haven/new-haven-4.jpg')"></div>
     </div>
     <div class="hero-overlay">
-        <p class="hero-subtitle">Welcome to the</p>
+        <p>Welcome to the</p>
         <h1 class="hero-title">Missouri River Valley Loop</h1>
         <p class="hero-description">Experience the charm of historic districts, winding trails, and vibrant local culture as you journey through the heart of Missouri. Discover hidden gems and create unforgettable memories along this carefully curated route.</p>
         <a href="#start" class="start-button">Start The Loop</a>
