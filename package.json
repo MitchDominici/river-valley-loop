@@ -1,0 +1,26 @@
+{
+  "name": "river-valley-loop",
+  "version": "1.0.0",
+  "description": "website for non-profit Missori River Valley Loop",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/css/input.css -o ./css/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MitchDominici/river-valley-loop.git"
+  },
+  "keywords": [
+    "missouri"
+  ],
+  "author": "mitchell dominici",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MitchDominici/river-valley-loop/issues"
+  },
+  "homepage": "https://github.com/MitchDominici/river-valley-loop#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.16"
+  }
+}
