@@ -50,9 +50,21 @@ function router(updateHistory = true) {
 
 // Initialize components
 window.addEventListener('load', () => {
-  loadComponent(components.header, document.querySelector('.header'));
+  loadComponent(components.header, document.querySelector('.header')).then(() => {
+    try {
+      document.getElementById('mobile-menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+    } catch (e) {
+      console.error('Error adding mobile menu event listener:', e);
+    }
+
+
+  });
   loadComponent(components.footer, document.querySelector('.footer'));
   router(false);
+
+
 });
 
 // Handle browser back/forward

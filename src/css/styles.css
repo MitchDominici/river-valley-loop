@@ -726,8 +726,20 @@ video {
   height: 11rem;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .min-h-screen {
   min-height: 100vh;
+}
+
+.min-h-64 {
+  min-height: 16rem;
+}
+
+.min-h-80 {
+  min-height: 20rem;
 }
 
 .w-11\/12 {
