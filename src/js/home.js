@@ -10,6 +10,7 @@ class HomePage {
     }
 
     nextSlide() {
+        console.log('nextSlide');
         try {
             window.homePage.currentSlide =
                 (window.homePage.currentSlide + 1) % window.homePage.totalSlides;
