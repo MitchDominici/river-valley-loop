@@ -6,7 +6,7 @@ class HomePage {
     }
 
     initialize() {
-        setInterval(this.nextSlide, 5000);
+        setInterval(this.nextSlide, 6500);
     }
 
     nextSlide() {
@@ -17,6 +17,10 @@ class HomePage {
                 `translateX(-${window.homePage.currentSlide * 100}%)`;
         } catch (e) {
         }
+    }
+
+    destroy() {
+        clearInterval(this.nextSlide);
     }
 }
 
