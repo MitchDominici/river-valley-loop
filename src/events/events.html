@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events - Missouri River Valley Loop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      background-color: #f5f5f5;
+    }
+
+    /* Calendar Container */
+    .calendar-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .month-year {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-button {
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .nav-button:hover {
+      background: #0056b3;
+    }
+
+    /* Calendar Grid */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1rem;
+    }
+
+    .calendar-day-header {
+      text-align: center;
+      font-weight: bold;
+      padding: 0.5rem;
+      background: #f8f9fa;
+    }
+
+    .calendar-day {
+      min-height: 100px;
+      padding: 0.5rem;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+    }
+
+    .calendar-day.other-month {
+      background: #f8f9fa;
+      color: #6c757d;
+    }
+
+    /* Event Styles */
+    .event {
+      margin: 0.25rem 0;
+      padding: 0.25rem 0.5rem;
+      background: #e3f2fd;
+      border-radius: 3px;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    /* Event Modal */
+    .event-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .upcoming-events-div{
+        margin: 2rem auto;
+        padding: 1rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        max-width: 1200px;
+    }
+
+    .upcoming-events-div h1{
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #0850ca;
+    }
+  </style>
+</head>
+<body>
+
+<div class="upcoming-events-div">
+  <h1>
+    Events
+  </h1>
+    <p>
+      Discover the heart and soul of Missouri's river communities through our vibrant local events. From seasonal festivals and farmers' markets to art shows and community gatherings, the Missouri River Valley Loop connects you with authentic experiences that showcase the best of our small businesses and historic towns. Browse our calendar to find upcoming events along the scenic Missouri River route, support local enterprises, and become part of our thriving community story. Whether you're a local resident or a curious traveler, there's always something happening in the Loop that's worth exploring.
+    </p>
+</div>
+
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button class="nav-button" id="prevMonth">&lt; Previous</button>
+    <h2 class="month-year" id="monthYear"></h2>
+    <button class="nav-button" id="nextMonth">Next &gt;</button>
+  </div>
+  <div class="calendar-grid" id="calendarGrid">
+    <!-- Calendar will be generated here -->
+  </div>
+</div>
+
+<div class="event-modal" id="eventModal">
+  <div class="modal-content">
+    <span class="close-button" id="closeModal">&times;</span>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDescription"></p>
+    <p id="modalDateTime"></p>
+    <p id="modalLocation"></p>
+  </div>
+</div>
+
+<script>
+  class Calendar {
+    constructor() {
+      this.events = [];
+      this.currentDate = new Date();
+      this.initializeCalendar();
+      this.loadEvents();
+    }
+
+    async loadEvents() {
+      try {
+        const response = await fetch('events.csv');
+        const csvText = await response.text();
+        this.parseCSV(csvText);
+        this.renderCalendar();
+      } catch (error) {
+        console.error('Error loading events:', error);
+      }
+    }
+
+    parseCSV(csvText) {
+      const lines = csvText.split('\n');
+      const headers = lines[0].split(',');
+
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+
+        const values = lines[i].split(',');
+        const event = {
+          title: values[0],
+          description: values[1],
+          date: new Date(values[2]),
+          location: values[3],
+          time: values[4]
+        };
+        this.events.push(event);
+      }
+    }
+
+    initializeCalendar() {
+      document.getElementById('prevMonth').addEventListener('click', () => {
+        this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+        this.renderCalendar();
+      });
+
+      document.getElementById('nextMonth').addEventListener('click', () => {
+        this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+        this.renderCalendar();
+      });
+
+      document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('eventModal').style.display = 'none';
+      });
+
+      this.renderCalendar();
+    }
+
+    renderCalendar() {
+      const year = this.currentDate.getFullYear();
+      const month = this.currentDate.getMonth();
+
+      document.getElementById('monthYear').textContent =
+              new Date(year, month).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDay = firstDay.getDay();
+
+      const calendarGrid = document.getElementById('calendarGrid');
+      calendarGrid.innerHTML = '';
+
+      // Add day headers
+      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      days.forEach(day => {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'calendar-day-header';
+        dayHeader.textContent = day;
+        calendarGrid.appendChild(dayHeader);
+      });
+
+      // Add blank days from previous month
+      for (let i = 0; i < startingDay; i++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.className = 'calendar-day other-month';
+        calendarGrid.appendChild(dayDiv);
+      }
+
+      // Add days of current month
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.className = 'calendar-day';
+
+        const dateDiv = document.createElement('div');
+        dateDiv.textContent = day;
+        dayDiv.appendChild(dateDiv);
+
+        // Add events for this day
+        const currentDate = new Date(year, month, day);
+        const dayEvents = this.events.filter(event =>
+                event.date.getDate() === currentDate.getDate() &&
+                event.date.getMonth() === currentDate.getMonth() &&
+                event.date.getFullYear() === currentDate.getFullYear()
+        );
+
+        dayEvents.forEach(event => {
+          const eventDiv = document.createElement('div');
+          eventDiv.className = 'event';
+          eventDiv.textContent = event.title;
+          eventDiv.addEventListener('click', () => this.showEventDetails(event));
+          dayDiv.appendChild(eventDiv);
+        });
+
+        calendarGrid.appendChild(dayDiv);
+      }
+    }
+
+    showEventDetails(event) {
+      const modal = document.getElementById('eventModal');
+      document.getElementById('modalTitle').textContent = event.title;
+      document.getElementById('modalDescription').textContent = event.description;
+      document.getElementById('modalDateTime').textContent =
+              `${event.date.toLocaleDateString()} at ${event.time}`;
+      document.getElementById('modalLocation').textContent = `Location: ${event.location}`;
+      modal.style.display = 'block';
+    }
+  }
+
+  // Initialize calendar when page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    new Calendar();
+  });
+</script>
+</body>
+</html>
