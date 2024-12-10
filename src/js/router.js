@@ -2,11 +2,14 @@
 const components = {
   header: 'src/components/header.html',
   footer: 'src/components/footer.html',
-  home: 'src/pages/home.html',
-  towns: 'src/pages/towns.html',
-  events: 'src/pages/events.html',
-  about: 'src/pages/about.html',
-  contact: 'src/pages/contact.html'
+  home: 'src/routes/home.html',
+  towns: 'src/routes/towns.html',
+  events: 'src/routes/events.html',
+  about: 'src/routes/about.html',
+  contact: 'src/routes/contact.html',
+  stay: 'src/routes/stay.html',
+  directions: 'src/routes/directions.html',
+  sponsors: 'src/routes/sponsors.html',
 };
 
 // Load component content

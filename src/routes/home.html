@@ -1,32 +1,51 @@
-<div class="home-nav-bar">
-    <button onclick="window.location.href='/wheretostay'">Where to Stay</button>
-    <button onclick="window.location.href='/sponsors'">Sponsors</button>
-    <button onclick="window.location.href='/directions'">Directions</button>
-</div>
+<div class="min-h-screen">
+    <!-- Sub Navigation -->
+    <div class="w-full h-24 shadow-md border-b-2 border-blue-100"
+         style="background: linear-gradient(to right, #624877, #eb5c47, #0850ca, #c7eaf3)">
+        <div class="container mx-auto h-full flex items-center justify-center gap-8">
+            <button class="border-2 border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition-colors"
+                    onclick="loadComponent(components.stay, document.getElementById('content'))">
+                Where to Stay
+            </button>
+            <button class="border-2 border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition-colors"
+                    onclick="loadComponent(components.sponsors, document.getElementById('content'))">
+                Sponsors
+            </button>
+            <button class="border-2 border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition-colors"
+                    onclick="loadComponent(components.directions, document.getElementById('content'))">
+                Directions
+            </button>
+        </div>
+    </div>
 
-<main class="hero-container">
-    <div class="image-gallery">
-        <div
-                class="gallery-image"
-                style="background-image: url('../../images/towns/hermann/hermann-6.jpg')"
-        ></div>
-        <div
-                class="gallery-image"
-                style="background-image: url('../../images/towns/hermann/hermann-4.jpg')"
-        ></div>
-        <div
-                class="gallery-image"
-                style="background-image: url('../../images/towns/new-haven/new-haven-4.jpg')"
-        ></div>
+    <!-- Hero Section -->
+    <div class="relative h-screen w-full overflow-hidden">
+        <div class="flex h-full w-full">
+            <div class=" md:block flex-1 bg-cover bg-center transition-all duration-500 ease-in-out"
+                 style="background-image: url('../../images/towns/hermann/hermann-6.jpg')">
+            </div>
+            <!--            <div class=" md:block flex-1 bg-cover bg-center transition-all duration-500 ease-in-out"-->
+            <!--                 style="background-image: url('../../images/towns/hermann/hermann-4.jpg')">-->
+            <!--            </div>-->
+            <div class=" md:block flex-1 bg-cover bg-center transition-all duration-500 ease-in-out"
+                 style="background-image: url('../../images/towns/new-haven/new-haven-4.jpg')">
+            </div>
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white
+                w-11/12 max-w-3xl p-4 rounded-lg bg-black bg-opacity-30">
+            <p class="text-lg">Welcome to the</p>
+            <h1 class="text-5xl md:text-6xl font-bold my-4 drop-shadow-lg">Missouri River Valley Loop</h1>
+            <p class="text-lg md:text-xl mb-8">
+                Experience the charm of historic districts, winding trails, and vibrant local culture
+                as you journey through the heart of Missouri. Discover hidden gems and create unforgettable
+                memories along this carefully curated route.
+            </p>
+            <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full
+                     transition-colors duration-300"
+                    onclick="loadComponent(components.start, document.getElementById('content'))">
+                Start The Loop
+            </button>
+        </div>
     </div>
-    <div class="hero-overlay">
-        <p style="font-size: 2rem">Welcome to the</p>
-        <h1 class="hero-title">Missouri River Valley Loop</h1>
-        <p class="hero-description">
-            Experience the charm of historic districts, winding trails, and vibrant local culture as you
-            journey through the heart of Missouri. Discover hidden gems and create unforgettable memories
-            along this carefully curated route.
-        </p>
-        <a href="#start" class="start-button">Start The Loop</a>
-    </div>
-</main>
+</div>
