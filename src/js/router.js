@@ -24,12 +24,16 @@ async function loadComponent(url, targetElement) {
 
     switch (pageName) {
       case 'towns':
-        const towns = new TownsPage();
-        towns.initialize();
+        window.townsPage = new TownsPage();
+        window.townsPage.initialize();
         break;
       case 'events':
         const events = new EventsPage();
         events.initialize();
+        break;
+      case 'home':
+        window.homePage = new HomePage();
+        window.homePage.initialize();
         break;
       default:
         break;
@@ -58,13 +62,9 @@ window.addEventListener('load', () => {
     } catch (e) {
       console.error('Error adding mobile menu event listener:', e);
     }
-
-
   });
   loadComponent(components.footer, document.querySelector('.footer'));
   router(false);
-
-
 });
 
 // Handle browser back/forward

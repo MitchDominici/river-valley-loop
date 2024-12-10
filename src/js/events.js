@@ -1,6 +1,5 @@
 class EventsPage {
     constructor() {
-        console.log('EventCalendar initialized');
         this.currentDate = new Date();
         this.events = [];
     }
@@ -10,7 +9,7 @@ class EventsPage {
             await this.loadEvents();
             this.initializeElements();
             this.setupEventListeners();
-            this.renderCalendar();  // Make sure calendar renders after initialization
+            this.renderCalendar(); // Make sure calendar renders after initialization
         } catch (error) {
             console.error('Initialization error:', error);
         }
@@ -56,8 +55,8 @@ class EventsPage {
         const headers = lines[0].split('|');
         return lines
             .slice(1)
-            .filter(line => line.trim())
-            .map(line => {
+            .filter((line) => line.trim())
+            .map((line) => {
                 const values = line.split('|');
                 const event = {};
                 headers.forEach((header, index) => {
@@ -110,7 +109,8 @@ class EventsPage {
     showEvents(events) {
         this.modalTitle.textContent = new Date(events[0]['Date and Time']).toLocaleDateString();
         this.modalContent.innerHTML = events
-            .map(event => `
+            .map(
+                (event) => `
             <div class="mb-4 p-4 border rounded">
                 <h4 class="font-bold">${event['Event Name']}</h4>
                 <p class="text-gray-600">${new Date(event['Date and Time']).toLocaleTimeString()}</p>
@@ -121,12 +121,18 @@ class EventsPage {
                     <span class="font-semibold">Price:</span> ${event['Price']}
                 </p>
                 <div class="mt-2">
-                    ${event['Tags'].split(',')
-                .map(tag => `<span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm mr-2">${tag.trim()}</span>`)
-                .join('')}
+                    ${event['Tags']
+                    .split(',')
+                    .map(
+                        (tag) =>
+                            `<span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm mr-2">${tag.trim()}</span>`
+                    )
+                    .join('')}
                 </div>
             </div>
-        `).join('');
+        `
+            )
+            .join('');
         this.modal.classList.remove('hidden');
     }
 
