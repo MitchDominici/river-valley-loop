@@ -3,5 +3,4 @@ try {
         document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 } catch (e) {
-
 }

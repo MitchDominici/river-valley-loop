@@ -16,9 +16,23 @@ async function loadComponent(url, targetElement) {
   try {
     const response = await fetch(url);
     const html = await response.text();
+
+    if (!targetElement) {
+      targetElement = document.getElementById('content')
+    }
+
     targetElement.innerHTML = html;
     // Update browser history when loading new component
     const pageName = url.split('/').pop().replace('.html', '');
+
+    // todo make this more dynamic
+    // Initialize calendar if loading events page
+    if (pageName === 'events') {
+      const calendar = new EventCalendar();
+      calendar.initialize();
+    }
+
+
     history.pushState({page: pageName}, '', `#${pageName}`);
   } catch (error) {
     console.error('Error loading component:', error);
