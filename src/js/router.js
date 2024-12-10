@@ -22,8 +22,7 @@ async function loadComponent(url, targetElement) {
 
     const pageName = url.split('/').pop().replace('.html', '');
 
-    window.homePage?.destroy();
-    delete window.homePage;
+    cleanUp();
 
     switch (pageName) {
       case 'towns':
@@ -47,6 +46,13 @@ async function loadComponent(url, targetElement) {
   } catch (error) {
     console.error('Error loading component:', error);
   }
+}
+
+function cleanUp() {
+  window.homePage?.destroy();
+  delete window.homePage;
+  delete window.townsPage;
+  delete window.whatToDoPage;
 }
 
 function router(updateHistory = true) {

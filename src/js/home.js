@@ -6,7 +6,7 @@ class HomePage {
     }
 
     initialize() {
-        setInterval(this.nextSlide, 6500);
+        setInterval(this.nextSlide, 7500);
     }
 
     nextSlide() {
