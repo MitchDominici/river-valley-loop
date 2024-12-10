@@ -6,7 +6,7 @@ const components = {
   events: 'src/routes/events.html',
   about: 'src/routes/about.html',
   contact: 'src/routes/contact.html',
-  stay: 'src/routes/stay.html',
+  todo: 'src/routes/what-to-do.html',
   directions: 'src/routes/directions.html',
   sponsors: 'src/routes/sponsors.html',
 };
@@ -37,6 +37,9 @@ async function loadComponent(url, targetElement) {
         window.homePage = new HomePage();
         window.homePage.initialize();
         break;
+      case 'what-to-do':
+        window.whatToDoPage = new WhatToDoPage();
+        window.whatToDoPage.initialize();
       default:
         break;
     }
