@@ -12,29 +12,37 @@ const components = {
   sponsors: 'src/routes/sponsors.html',
 };
 
-// Load component content
 async function loadComponent(url, targetElement) {
   try {
     const response = await fetch(url);
     const html = await response.text();
     targetElement.innerHTML = html;
+    // Update browser history when loading new component
+    const pageName = url.split('/').pop().replace('.html', '');
+    history.pushState({page: pageName}, '', `#${pageName}`);
   } catch (error) {
     console.error('Error loading component:', error);
   }
 }
 
-// Router function
 function router() {
   const path = window.location.hash.slice(1) || 'home';
   loadComponent(components[path], document.getElementById('content'));
 }
 
-// Initial load
 window.addEventListener('load', () => {
   loadComponent(components.header, document.querySelector('.header'));
   loadComponent(components.footer, document.querySelector('.footer'));
   router();
 });
 
-// Handle navigation
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (event) => {
+  if (event.state && event.state.page) {
+    loadComponent(components[event.state.page], document.getElementById('content'));
+  } else {
+    router();
+  }
+});
+
 window.addEventListener('hashchange', router);
