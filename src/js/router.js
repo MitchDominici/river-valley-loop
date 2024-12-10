@@ -1,11 +1,12 @@
 // Components to be loaded
 const components = {
-  header: 'components/header.html',
-  footer: 'components/footer.html',
-  home: 'pages/home.html',
-  sponsors: 'pages/sponsors.html',
-  stay: 'pages/stay.html',
-  directions: 'pages/directions.html',
+  header: 'src/components/header.html',
+  footer: 'src/components/footer.html',
+  home: 'src/pages/home.html',
+  towns: 'src/pages/towns.html',
+  events: 'src/pages/events.html',
+  about: 'src/pages/about.html',
+  contact: 'src/pages/contact.html'
 };
 
 // Load component content
