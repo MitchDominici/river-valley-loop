@@ -23,6 +23,7 @@ async function loadComponent(url, targetElement) {
     const pageName = url.split('/').pop().replace('.html', '');
 
     window.homePage?.destroy();
+    delete window.homePage;
 
     switch (pageName) {
       case 'towns':
