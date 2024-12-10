@@ -1,4 +1,3 @@
-// Components to be loaded
 const components = {
   header: 'src/components/header.html',
   footer: 'src/components/footer.html',
@@ -12,51 +11,50 @@ const components = {
   sponsors: 'src/routes/sponsors.html',
 };
 
+// TODO - Fix browser back/forward
+
 async function loadComponent(url, targetElement) {
   try {
     const response = await fetch(url);
     const html = await response.text();
-
-    if (!targetElement) {
-      targetElement = document.getElementById('content')
-    }
-
+    targetElement = targetElement || document.getElementById('content');
     targetElement.innerHTML = html;
-    // Update browser history when loading new component
-    const pageName = url.split('/').pop().replace('.html', '');
 
-    // todo make this more dynamic
-    // Initialize calendar if loading events page
+    const pageName = url.split('/').pop().replace('.html', '');
     if (pageName === 'events') {
       const calendar = new EventCalendar();
       calendar.initialize();
     }
-
-
-    history.pushState({page: pageName}, '', `#${pageName}`);
   } catch (error) {
     console.error('Error loading component:', error);
   }
 }
 
-function router() {
+function router(updateHistory = true) {
   const path = window.location.hash.slice(1) || 'home';
   loadComponent(components[path], document.getElementById('content'));
+
+  if (updateHistory) {
+    history.pushState({page: path}, '', `#${path}`);
+  }
 }
 
+// Initialize components
 window.addEventListener('load', () => {
   loadComponent(components.header, document.querySelector('.header'));
   loadComponent(components.footer, document.querySelector('.footer'));
-  router();
+  router(false);
 });
 
-// Handle browser back/forward buttons
-window.addEventListener('popstate', (event) => {
-  if (event.state && event.state.page) {
-    loadComponent(components[event.state.page], document.getElementById('content'));
-  } else {
-    router();
-  }
+// Handle browser back/forward
+window.addEventListener('popstate', () => {
+  console.log('popstate event');
+  router(false);
 });
 
-window.addEventListener('hashchange', router);
+// Handle hash changes (clicking links)
+window.addEventListener('hashchange', (e) => {
+  e.preventDefault();
+  console.log('hashchange event:', e);
+  router(true);
+});
