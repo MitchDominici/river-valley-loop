@@ -21,9 +21,18 @@ async function loadComponent(url, targetElement) {
     targetElement.innerHTML = html;
 
     const pageName = url.split('/').pop().replace('.html', '');
-    if (pageName === 'events') {
-      const calendar = new EventCalendar();
-      calendar.initialize();
+
+    switch (pageName) {
+      case 'towns':
+        const towns = new TownsPage();
+        towns.initialize();
+        break;
+      case 'events':
+        const events = new EventsPage();
+        events.initialize();
+        break;
+      default:
+        break;
     }
   } catch (error) {
     console.error('Error loading component:', error);

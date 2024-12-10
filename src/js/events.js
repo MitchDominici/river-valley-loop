@@ -1,4 +1,4 @@
-class EventCalendar {
+class EventsPage {
     constructor() {
         console.log('EventCalendar initialized');
         this.currentDate = new Date();
