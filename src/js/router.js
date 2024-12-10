@@ -49,8 +49,10 @@ async function loadComponent(url, targetElement) {
 }
 
 function cleanUp() {
-  window.homePage?.destroy();
-  delete window.homePage;
+  if (window.homePage) {
+    window.homePage.destroy();
+    window.homePage = null;
+  }
   delete window.townsPage;
   delete window.whatToDoPage;
 }

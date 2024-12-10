@@ -1,28 +1,29 @@
 class HomePage {
     constructor() {
         this.currentSlide = 0;
+        this.intervalId = null;
         const slides = document.querySelectorAll('#imageCarousel > div');
         this.totalSlides = slides.length;
+        // Bind the method to preserve context
+        this.nextSlide = this.nextSlide.bind(this);
     }
 
     initialize() {
-        setInterval(this.nextSlide, 7500);
+        this.intervalId = setInterval(this.nextSlide, 7500);
     }
 
     nextSlide() {
-        console.log('nextSlide');
-        try {
-            window.homePage.currentSlide =
-                (window.homePage.currentSlide + 1) % window.homePage.totalSlides;
-            document.getElementById('imageCarousel').style.transform =
-                `translateX(-${window.homePage.currentSlide * 100}%)`;
-        } catch (e) {
+        this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+        const carousel = document.getElementById('imageCarousel');
+        if (carousel) {
+            carousel.style.transform = `translateX(-${this.currentSlide * 100}%)`;
         }
     }
 
     destroy() {
-        clearInterval(this.nextSlide);
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+    }
     }
 }
-
-window.homePage = new HomePage();
