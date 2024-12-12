@@ -15,6 +15,11 @@ module.exports = {
         'warm-taupe': '#977b5d',
         'blush-beige': '#e4c8b4',
       },
+      fontFamily: {
+        'display': ['Satisfy', 'cursive'],
+        'accent': ['Kaushan Script', 'cursive'],
+        'fun': ['Pacifico', 'cursive'],
+      },
     },
   },
   plugins: [],

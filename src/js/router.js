@@ -9,6 +9,7 @@ const components = {
   todo: 'src/routes/what-to-do.html',
   directions: 'src/routes/directions.html',
   sponsors: 'src/routes/sponsors.html',
+  interactiveMap: 'src/routes/interactive-map.html',
 };
 
 // TODO - Fix browser back/forward
@@ -28,6 +29,7 @@ async function loadComponent(url, targetElement) {
       case 'towns':
         window.townsPage = new TownsPage();
         window.townsPage.initialize();
+        // new LoopMap();
         break;
       case 'events':
         const events = new EventsPage();
@@ -43,6 +45,12 @@ async function loadComponent(url, targetElement) {
       default:
         break;
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM Content Loaded');
+      const sections = document.querySelectorAll('[data-scroll-animate]');
+      console.log('Found sections:', sections.length);
+    });
   } catch (error) {
     console.error('Error loading component:', error);
   }

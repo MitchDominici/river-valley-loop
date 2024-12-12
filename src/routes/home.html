@@ -6,20 +6,17 @@
   >
     <div class="container mx-auto h-full flex items-center justify-center gap-8">
       <button
-              class="border-2 border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition-colors"
-              onclick="loadComponent(components.todo)"
+              class="border-2 border-white text-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition-colors font-accent text-2xl"
       >
         What to Do
       </button>
       <button
-              class="border-2 border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition-colors"
-              onclick="loadComponent(components.sponsors)"
+              class="border-2 border-white text-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition-colors font-accent text-2xl"
       >
         Sponsors
       </button>
       <button
-              class="border-2 border-white text-white px-6 py-2 rounded-xl hover:bg-white hover:text-black transition-colors"
-              onclick="loadComponent(components.directions)"
+              class="border-2 border-white text-white px-8 py-3 rounded-xl hover:bg-white hover:text-black transition-colors font-accent text-2xl"
       >
         Directions
       </button>
@@ -27,62 +24,130 @@
   </div>
 
   <!-- Hero Section -->
-  <div class="relative h-screen w-full overflow-hidden">
-    <div class="flex h-full w-full transition-transform duration-700" id="imageCarousel">
-      <div
-              class="min-w-full h-full bg-cover bg-center"
-              style="
-          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/hermann/hermann-1.jpg');
-        "
-      ></div>
-      <div
-              class="min-w-full h-full bg-cover bg-center"
-              style="
-          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/new-haven/new-haven-2.jpg');
-        "
-      ></div>
-      <div
-              class="min-w-full h-full bg-cover bg-center"
-              style="
-          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/berger/berger-1.jpg');
-        "
-      ></div>
-      <div
-              class="min-w-full h-full bg-cover bg-center"
-              style="
-          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/hermann/hermann-6.jpg');
-        "
-      ></div>
-      <div
-              class="min-w-full h-full bg-cover bg-center"
-              style="
-          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/new-haven/new-haven-4.jpg');
-        "
-      ></div>
-      <div
-              class="min-w-full h-full bg-cover bg-center"
-              style="
-          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/beaufort/beaufort-1.jpg');
-        "
-      ></div>
+  <div class="relative h-screen w-full overflow-hidden hero-section">
+    <!--    <div-->
+    <!--      class="absolute inset-0 flex h-full w-full transition-transform duration-700"-->
+    <!--      id="imageCarousel"-->
+    <!--    >-->
+    <!--      <div-->
+    <!--        class="min-w-full h-full bg-cover bg-center"-->
+    <!--        style="-->
+    <!--          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/hermann/hermann-1.jpg');-->
+    <!--        "-->
+    <!--      ></div>-->
+    <!--      <div-->
+    <!--        class="min-w-full h-full bg-cover bg-center"-->
+    <!--        style="-->
+    <!--          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/new-haven/new-haven-2.jpg');-->
+    <!--        "-->
+    <!--      ></div>-->
+    <!--      <div-->
+    <!--        class="min-w-full h-full bg-cover bg-center"-->
+    <!--        style="-->
+    <!--          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/berger/berger-1.jpg');-->
+    <!--        "-->
+    <!--      ></div>-->
+    <!--      <div-->
+    <!--        class="min-w-full h-full bg-cover bg-center"-->
+    <!--        style="-->
+    <!--          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/hermann/hermann-6.jpg');-->
+    <!--        "-->
+    <!--      ></div>-->
+    <!--      <div-->
+    <!--        class="min-w-full h-full bg-cover bg-center"-->
+    <!--        style="-->
+    <!--          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/new-haven/new-haven-4.jpg');-->
+    <!--        "-->
+    <!--      ></div>-->
+    <!--      <div-->
+    <!--        class="min-w-full h-full bg-cover bg-center"-->
+    <!--        style="-->
+    <!--          background-image: url('https://mitchdominici.github.io/river-valley-loop/images/towns/beaufort/beaufort-1.jpg');-->
+    <!--        "-->
+    <!--      ></div>-->
+    <!--    </div>-->
+    <!-- Sky background -->
+    <div class="absolute inset-0 bg-gradient-to-b from-sky-300 to-sky-100">
+      <!-- Animated clouds -->
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
     </div>
 
-    <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white w-11/12 max-w-3xl p-4 rounded-lg bg-black bg-opacity-50"
-    >
-      <div class="text-lg">Welcome to the</div>
-      <h1 class="text-5xl md:text-6xl font-bold my-4 drop-shadow-lg">Missouri River Valley Loop</h1>
-      <p>
-        Experience the charm of historic districts, winding trails, and vibrant local culture as you
-        journey through the heart of Missouri. Discover hidden gems and create unforgettable
-        memories along this carefully curated route.
-      </p>
-      <button
-              class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
-              onclick="loadComponent(components.towns)"
-      >
-        Start The Loop
-      </button>
+    <!-- River container -->
+    <div class="river-container">
+      <div class="river">
+        <!-- Animated waves -->
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+
+        <!-- Animated boat -->
+        <div class="boat">
+          <div class="boat-body">⛵</div>
+        </div>
+
+        <!-- Town markers -->
+        <div class="town-markers">
+          <div class="town-marker" data-town="Hermann">
+            <div class="marker"></div>
+            <span>Hermann</span>
+          </div>
+          <div class="town-marker" data-town="New Haven">
+            <div class="marker"></div>
+            <span>New Haven</span>
+          </div>
+          <div class="town-marker" data-town="Berger">
+            <div class="marker"></div>
+            <span>Berger</span>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/60 to-transparent">
+      <div class="text-center text-white z-10 px-4">
+        <div class="text-3xl md:text-4xl font-accent opacity-0 transform -translate-y-4 animate-fade-in">
+          Welcome to the
+        </div>
+        <h1 class="font-display text-6xl md:text-8xl lg:text-9xl my-6 drop-shadow-lg opacity-0 transform -translate-y-4 animate-fade-in animation-delay-200">
+          Missouri River<br/>Valley Loop
+        </h1>
+        <p class="max-w-3xl mx-auto text-xl md:text-2xl opacity-0 transform -translate-y-4 animate-fade-in animation-delay-400 leading-relaxed">
+          Experience the charm of historic districts, winding trails, and vibrant local culture as you
+          journey through the heart of Missouri. Discover hidden gems and create unforgettable
+          memories along this carefully curated route.
+        </p>
+        <button
+                class="mt-8 px-10 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors opacity-0 transform -translate-y-4 animate-fade-in animation-delay-600 font-fun text-2xl md:text-3xl"
+                onclick="loadComponent(components.towns)"
+        >
+          Start The Loop
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 py-16">
+    <section
+            class="mb-16 transition-all duration-700 ease-out translate-y-4"
+            data-scroll-animate
+    >
+      <h2 class="font-fun text-5xl md:text-6xl mb-10 text-blue-900">
+        Local Events
+      </h2>
+      <!-- Your existing content -->
+    </section>
+
+    <section
+            class="mb-16 transition-all duration-700 ease-out translate-y-4"
+            data-scroll-animate
+    >
+      <h2 class="font-fun text-5xl md:text-6xl mb-10 text-blue-900">
+        Discover Our Towns
+      </h2>
+      <!-- Your existing content -->
+    </section>
   </div>
 </div>
