@@ -20,11 +20,10 @@
   <!-- River-themed wave background -->
   <div class="relative z-10" id="towns-main-content">
     <!-- Header section -->
-    <div class="relative z-10 text-center mb-16">
+    <div class="text-center mb-16">
       <h1 class="text-5xl font-bold text-gray-900 mb-6">Historic River Towns</h1>
       <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-        Discover the unique charm and rich history of the communities along the Missouri River
-        Valley Loop.
+        Discover the unique charm and rich history of the communities along the Missouri River Valley Loop.
       </p>
     </div>
 
@@ -48,21 +47,61 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="townGrid">
       <!-- Town cards will be injected here by JavaScript -->
     </div>
-
-    <!-- River-themed bottom decoration -->
-    <div class="absolute bottom-0 left-0 w-full h-32 overflow-hidden -z-10 transform rotate-180">
-      <svg class="w-full h-full" viewBox="0 0 1440 320">
-        <path
-                d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,122.7C960,139,1056,149,1152,144C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-                fill="#c7eaf3"
-                fill-opacity="0.2"
-        ></path>
-      </svg>
     </div>
-  </div>
 </div>
 <style>
   .river-border {
     filter: drop-shadow(0 0 10px rgba(199, 234, 243, 0.3));
+  }
+
+  .town-container {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    margin: 0 auto;
+    background: #adb4e1;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  .town-container:hover {
+    transform: scale(1.05);
+  }
+
+  .town-image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .town-image-container::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    border: 2px dashed #3b82f6;
+    border-radius: 50%;
+  }
+
+  .town-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #3b82f6;
+  }
+
+  .town-text {
+    color: white;
+    margin-top: 1rem;
+  }
+
+  .town-badge {
+    background: #7087bb;
+    color: white;
   }
 </style>

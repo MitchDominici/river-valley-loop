@@ -34,28 +34,30 @@ class TownsPage {
         });
   }
 
-  renderTownGrid() {
-    const townGrid = document.getElementById('townGrid');
-    townGrid.innerHTML = this.towns
-        .map(town => `
-                <a onclick="loadComponent(components.town, null, '${town.name}')"
-                   class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <img src="${town.main_image}" alt="${town.name}" 
-                         class="w-full h-64 object-cover transform group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <h2 class="text-3xl font-bold mb-2">${town.name}</h2>
-                        <div class="flex items-center gap-2 text-sm opacity-90">
-                            <span class="px-2 py-1 bg-white/20 rounded">Est. ${town.established}</span>
-                            <span class="px-2 py-1 bg-white/20 rounded">Pop. ${town.population}</span>
-                            <span class="px-2 py-1 bg-black rounded">Est. ${town.established}</span>
-                            <span class="px-2 py-1 bg-black rounded">Pop. ${town.population}</span>
-                        </div>
-                    </div>
-                </a>
-            `)
-        .join('');
-  }
+    renderTownGrid() {
+        const townGrid = document.getElementById('townGrid');
+        townGrid.innerHTML = this.towns
+            .map(town => `
+        <div class="town-container cursor-pointer" onclick="loadComponent(components.town, null, '${town.name}')">
+          <div class="town-image-container">
+            <img 
+              src="${town.main_image}" 
+              alt="${town.name}" 
+              class="town-image"
+              loading="lazy"
+            >
+          </div>
+          <div class="text-center town-text">
+            <h2 class="text-2xl font-bold mb-2">${town.name}</h2>
+            <div class="flex flex-wrap justify-center gap-2 text-sm">
+              <span class="px-3 py-1 town-badge rounded-full">Est. ${town.established}</span>
+              <span class="px-3 py-1 town-badge rounded-full">Pop. ${town.population}</span>
+            </div>
+          </div>
+        </div>
+      `)
+            .join('');
+    }
 }
 
 // window.townsPage = new TownsPage();
