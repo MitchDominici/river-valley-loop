@@ -48,7 +48,7 @@ class TownsPage {
             >
           </div>
           <div class="text-center town-text">
-            <h2 class="text-2xl font-bold mb-2">${town.name}</h2>
+            <h2 class="text-4xl font-bold mb-2 font-display">${town.name}</h2>
             <div class="flex flex-wrap justify-center gap-2 text-sm">
               <span class="px-3 py-1 town-badge rounded-full">Est. ${town.established}</span>
               <span class="px-3 py-1 town-badge rounded-full">Pop. ${town.population}</span>

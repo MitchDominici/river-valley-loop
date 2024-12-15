@@ -1066,15 +1066,6 @@ section:hover h2.font-fun::after {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-white\/20 {
-  background-color: rgb(255 255 255 / 0.2);
-}
-
-.bg-blush-beige {
-  --tw-bg-opacity: 1;
-  background-color: rgb(228 200 180 / var(--tw-bg-opacity, 1));
-}
-
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -1150,6 +1141,11 @@ section:hover h2.font-fun::after {
   padding-right: 0.5rem;
 }
 
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1193,11 +1189,6 @@ section:hover h2.font-fun::after {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 
 .pt-16 {
@@ -1352,6 +1343,16 @@ section:hover h2.font-fun::after {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.text-primary-blue {
+  --tw-text-opacity: 1;
+  color: rgb(8 113 228 / var(--tw-text-opacity, 1));
+}
+
+.text-earthy-brown {
+  --tw-text-opacity: 1;
+  color: rgb(111 67 14 / var(--tw-text-opacity, 1));
+}
+
 .opacity-0 {
   opacity: 0;
 }
@@ -1372,6 +1373,10 @@ section:hover h2.font-fun::after {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.outline {
+  outline-style: solid;
 }
 
 .drop-shadow {
