@@ -24,7 +24,6 @@ async function loadComponent(url, targetElement, subPage) {
 
     const pageName = url.split('/').pop().replace('.html', '');
 
-
     cleanUp();
 
     switch (pageName) {

@@ -12,10 +12,10 @@ class HomePage {
         const townPositions = [
             {name: 'Hermann', left: '20%', top: '40%'},
             {name: 'New Haven', left: '90%', top: '50%'},
-            {name: 'Berger', left: '80%', top: '45%'}
+            {name: 'Berger', left: '80%', top: '45%'},
         ];
 
-        townPositions.forEach(town => {
+        townPositions.forEach((town) => {
             const marker = document.querySelector(`[data-town="${town.name}"]`);
             if (marker) {
                 marker.style.left = town.left;

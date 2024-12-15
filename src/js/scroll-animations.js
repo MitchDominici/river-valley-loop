@@ -15,8 +15,6 @@ class ScrollAnimations {
 
         // Initialize scroll-triggered animations
         this.initScrollAnimations();
-
-
     }
 
     initIntersectionObserver() {
