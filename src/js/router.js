@@ -24,40 +24,58 @@ async function loadComponent(url, targetElement, subPage) {
 
     const pageName = url.split('/').pop().replace('.html', '');
 
-    cleanUp();
-
-    switch (pageName) {
-      case 'towns':
-        window.townsPage = new TownsPage();
-        window.townsPage.initialize();
-        // new LoopMap();
-        break;
-      case 'town':
-        window.townPage = new TownPage();
-        window.townPage.initialize(subPage);
-        break;
-      case 'events':
-        const events = new EventsPage();
-        events.initialize();
-        break;
-      case 'home':
-        window.homePage = new HomePage();
-        window.homePage.initialize();
-        break;
-      case 'what-to-do':
-        window.whatToDoPage = new WhatToDoPage();
-        window.whatToDoPage.initialize();
-      default:
-        break;
+    // Update URL and history state
+    if (targetElement === document.getElementById('content')) {
+      updateHistory(pageName, subPage);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM Content Loaded');
-      const sections = document.querySelectorAll('[data-scroll-animate]');
-      console.log('Found sections:', sections.length);
-    });
+    cleanUp();
+    initializePage(pageName, subPage);
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   console.log('DOM Content Loaded');
+    //   const sections = document.querySelectorAll('[data-scroll-animate]');
+    //   console.log('Found sections:', sections.length);
+    // });
   } catch (error) {
     console.error('Error loading component:', error);
+  }
+}
+
+function updateHistory(pageName, subPage) {
+  const newUrl = subPage ? `#${pageName}/${subPage}` : `#${pageName}`;
+  const state = {pageName, subPage};
+
+  // Check if this is a new navigation or back/forward
+  const currentState = history.state;
+  if (!currentState || currentState.pageName !== pageName || currentState.subPage !== subPage) {
+    history.pushState(state, '', newUrl);
+  }
+}
+
+function initializePage(pageName, subPage) {
+  switch (pageName) {
+    case 'towns':
+      window.townsPage = new TownsPage();
+      window.townsPage.initialize();
+      // new LoopMap();
+      break;
+    case 'town':
+      window.townPage = new TownPage();
+      window.townPage.initialize(subPage);
+      break;
+    case 'events':
+      const events = new EventsPage();
+      events.initialize();
+      break;
+    case 'home':
+      window.homePage = new HomePage();
+      window.homePage.initialize();
+      break;
+    case 'what-to-do':
+      window.whatToDoPage = new WhatToDoPage();
+      window.whatToDoPage.initialize();
+    default:
+      break;
   }
 }
 
@@ -70,12 +88,25 @@ function cleanUp() {
   delete window.whatToDoPage;
 }
 
+function getPathAndSubpage() {
+  const hash = window.location.hash.slice(1) || 'home';
+  const [path, subPage] = hash.split('/');
+  return {path, subPage};
+}
+
 function router(updateHistory = true) {
-  const path = window.location.hash.slice(1) || 'home';
-  loadComponent(components[path], document.getElementById('content'));
+  const {path, subPage} = getPathAndSubpage();
+
+  if (!components[path]) {
+    console.error('Invalid path:', path);
+    return;
+  }
+
+  loadComponent(components[path], document.getElementById('content'), subPage);
 
   if (updateHistory) {
-    history.pushState({page: path}, '', `#${path}`);
+    const url = subPage ? `#${path}/${subPage}` : `#${path}`;
+    history.pushState({path, subPage}, '', url);
   }
 }
 
@@ -95,14 +126,10 @@ window.addEventListener('load', () => {
 });
 
 // Handle browser back/forward
-window.addEventListener('popstate', () => {
-  console.log('popstate event');
-  router(false);
+window.addEventListener('popstate', (event) => {
+  if (event.state) {
+    const {pageName, subPage} = event.state;
+    loadComponent(components[pageName], null, subPage);
+  }
 });
 
-// Handle hash changes (clicking links)
-window.addEventListener('hashchange', (e) => {
-  e.preventDefault();
-  console.log('hashchange event:', e);
-  router(true);
-});
