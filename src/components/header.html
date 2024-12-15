@@ -1,0 +1,71 @@
+<div class="bg-white shadow-md">
+  <nav class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between">
+      <img
+              alt="Missouri River Valley Loop logo"
+              class="28 h-28 hover:cursor-pointer"
+              onclick="loadComponent(components.home)"
+              src="https://mitchdominici.github.io/river-valley-loop/images/main/logo-alt-1.png"
+      />
+      <!--      <div class="text-xl font-bold text-gray-800">Missouri River Valley Loop</div>-->
+
+      <div class="hidden md:flex space-x-6">
+        <button class="text-gray-600 hover:text-gray-900" onclick="loadComponent(components.home)">
+          Home
+        </button>
+        <button class="text-gray-600 hover:text-gray-900" onclick="loadComponent(components.towns)">
+          Towns
+        </button>
+        <button
+                class="text-gray-600 hover:text-gray-900"
+                onclick="loadComponent(components.events)"
+        >
+          Events
+        </button>
+        <button class="text-gray-600 hover:text-gray-900" onclick="loadComponent(components.about)">
+          About
+        </button>
+      </div>
+
+      <button class="md:hidden p-2" id="mobile-menu-button">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+                  d="M4 6h16M4 12h16M4 18h16"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="hidden md:hidden mt-4" id="mobile-menu">
+      <div class="flex flex-col space-y-3">
+        <button
+                class="text-left text-gray-600 hover:text-gray-900"
+                onclick="loadComponent(components.home)"
+        >
+          Home
+        </button>
+        <button
+                class="text-left text-gray-600 hover:text-gray-900"
+                onclick="loadComponent(components.towns)"
+        >
+          Towns
+        </button>
+        <button
+                class="text-left text-gray-600 hover:text-gray-900"
+                onclick="loadComponent(components.events)"
+        >
+          Events
+        </button>
+        <button
+                class="text-left text-gray-600 hover:text-gray-900"
+                onclick="loadComponent(components.about)"
+        >
+          About
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>
