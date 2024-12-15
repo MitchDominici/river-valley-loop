@@ -1,0 +1,66 @@
+<!-- town.html -->
+<div class="relative">
+    <!-- Decorative top wave -->
+    <svg class="absolute top-0 left-0 w-full h-24 -z-10" viewBox="0 0 1440 320">
+        <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,106.7C960,117,1056,139,1152,133.3C1248,128,1344,96,1392,80L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+              fill="#c7eaf3"></path>
+    </svg>
+
+    <!-- Town Header Info -->
+    <div class="container mx-auto px-4 pt-16">
+        <div class="bg-white rounded-lg shadow-lg p-8 relative overflow-hidden">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Town Shape with Main Image -->
+                <div class="relative w-full md:w-1/2 aspect-square">
+                    <div class="absolute inset-0 p-4">
+                        <div class="relative h-full state-shape">
+                            <img alt="" class="w-full h-full object-cover rounded-lg" id="mainImage">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Town Info -->
+                <div class="w-full md:w-1/2">
+                    <h1 class="text-5xl font-bold mb-4" id="townName"></h1>
+                    <div class="flex gap-4 mb-6">
+                        <div class="text-center">
+                            <div class="text-sm text-gray-600">Population</div>
+                            <div class="text-2xl font-bold" id="population"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-600">County</div>
+                            <div class="text-2xl font-bold" id="county"></div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm text-gray-600">Founded</div>
+                            <div class="text-2xl font-bold" id="established"></div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-lg mb-8" id="description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-6">Gallery</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="imageGallery"></div>
+    </div>
+
+    <!-- Things to Do -->
+    <div class="container mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold mb-6">Things to do in <span id="townNameDo"></span></h2>
+        <div class="mb-4 text-gray-600">These are businesses we have personally visited and will vouch for their great
+            service and offerings!
+        </div>
+
+        <div class="space-y-4" id="businessList"></div>
+    </div>
+</div>
+
+<!--<style>-->
+<!--  .state-shape {-->
+<!--    clip-path: path('M 50,0 L 100,25 L 100,75 L 50,100 L 0,75 L 0,25 Z');-->
+<!--  }-->
+<!--</style>-->

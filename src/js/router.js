@@ -3,6 +3,7 @@ const components = {
   footer: 'src/components/footer.html',
   home: 'src/routes/home.html',
   towns: 'src/routes/towns.html',
+  town: 'src/routes/town.html',
   events: 'src/routes/events.html',
   about: 'src/routes/about.html',
   contact: 'src/routes/contact.html',
@@ -14,7 +15,7 @@ const components = {
 
 // TODO - Fix browser back/forward
 
-async function loadComponent(url, targetElement) {
+async function loadComponent(url, targetElement, subPage) {
   try {
     const response = await fetch(url);
     const html = await response.text();
@@ -23,6 +24,7 @@ async function loadComponent(url, targetElement) {
 
     const pageName = url.split('/').pop().replace('.html', '');
 
+
     cleanUp();
 
     switch (pageName) {
@@ -30,6 +32,10 @@ async function loadComponent(url, targetElement) {
         window.townsPage = new TownsPage();
         window.townsPage.initialize();
         // new LoopMap();
+        break;
+      case 'town':
+        window.townPage = new TownPage();
+        window.townPage.initialize(subPage);
         break;
       case 'events':
         const events = new EventsPage();
