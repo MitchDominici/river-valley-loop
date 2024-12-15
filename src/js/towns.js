@@ -10,7 +10,7 @@ class TownsPage {
   }
 
   async loadTowns() {
-    const response = await fetch('/data/towns/towns.csv');
+      const response = await fetch('data/towns.csv');
     const csvText = await response.text();
     this.towns = this.parseCSV(csvText);
   }

@@ -11,14 +11,14 @@ class TownPage {
   }
 
   async loadTown(townName) {
-    const response = await fetch('data/towns/towns.csv');
+    const response = await fetch('data/towns.csv');
     const csvText = await response.text();
     const towns = this.parseCSV(csvText);
     this.town = towns.find((t) => t.name.toLowerCase() === townName.toLowerCase());
   }
 
   async loadBusinesses(townName) {
-    const response = await fetch('data/businesses/businesses.csv');
+    const response = await fetch('data/businesses.csv');
     const csvText = await response.text();
     const businesses = this.parseCSV(csvText);
     this.businesses = businesses.filter((b) => b.town.toLowerCase() === townName.toLowerCase());
