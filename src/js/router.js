@@ -19,8 +19,17 @@ async function loadComponent(url, targetElement, subPage) {
   try {
     const response = await fetch(url);
     const html = await response.text();
+
     targetElement = targetElement || document.getElementById('content');
+    targetElement.style.opacity = 0;
+
     targetElement.innerHTML = html;
+    targetElement.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+    targetElement.style.transform = 'translateY(20px)';
+    requestAnimationFrame(() => {
+      targetElement.style.opacity = 1;
+      targetElement.style.transform = 'translateY(0)';
+    });
 
     const pageName = url.split('/').pop().replace('.html', '');
 
@@ -55,7 +64,7 @@ function updateHistory(pageName, subPage) {
 function initializePage(pageName, subPage) {
   const riverContainer = document.getElementById('river-boat-container');
 
-  riverContainer.style.visibility = 'visible';
+  riverContainer.style.visibility = 'hidden';
   switch (pageName) {
     case 'towns':
       window.townsPage = new TownsPage();
@@ -83,6 +92,10 @@ function initializePage(pageName, subPage) {
     default:
       break;
   }
+
+  if (pageName !== 'home') {
+    riverContainer.style.visibility = 'visible';
+  }
 }
 
 function cleanUp() {
@@ -107,6 +120,7 @@ function router(updateHistory = true) {
     console.error('Invalid path:', path);
     return;
   }
+
 
   loadComponent(components[path], document.getElementById('content'), subPage);
 
