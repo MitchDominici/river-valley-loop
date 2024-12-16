@@ -126,21 +126,21 @@ class EventsPage {
             .map(
                 (event) => `
                 <div class="mb-6 p-6 border rounded-lg hover:shadow-lg transition-shadow">
-                    <h4 class="text-xl font-fun text-earthy-brown mb-2">${event['Event Name']}</h4>
-                    <p class="text-primary-blue">${new Date(event['Date and Time']).toLocaleTimeString()}</p>
-                    <p class="text-gray-700 mt-3">${event['Description']}</p>
+                    <h4 class="text-4xl text-bold font-display text-primary-blue mb-2">${event['Event Name']}</h4>
+                    <p class="text-primary-blue  text-3xl">${new Date(event['Date and Time']).toLocaleTimeString()}</p>
+                    <p class="text-gray-700 mt-3  text-3xl">${event['Description']}</p>
                     <div class="mt-4 grid grid-cols-2 gap-4">
                         <div>
-                            <span class="font-semibold text-gray-600">Location:</span>
-                            <p class="text-gray-800">${event['Location']}</p>
+                            <span class="font-semibold text-gray-600 text-2xl">Location:</span>
+                            <p class="text-gray-800 text-xl">${event['Location']}</p>
                         </div>
                         <div>
-                            <span class="font-semibold text-gray-600">Duration:</span>
-                            <p class="text-gray-800">${event['Duration']}</p>
+                            <span class="font-semibold text-gray-600 text-2xl">Duration:</span>
+                            <p class="text-gray-800 text-xl">${event['Duration']}</p>
                         </div>
                         <div>
-                            <span class="font-semibold text-gray-600">Price:</span>
-                            <p class="text-gray-800">${event['Price']}</p>
+                            <span class="font-semibold text-gray-600 text-2xl">Price:</span>
+                            <p class="text-gray-800 text-xl">${event['Price']}</p>
                         </div>
                     </div>
                     <div class="mt-4 flex flex-wrap gap-2">
