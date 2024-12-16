@@ -1,15 +1,79 @@
-<div class="min-h-screen p-8 bg-gradient-to-br from-white to-soft-sky-blue/10">
-  <!-- Decorative border container -->
-  <div class="relative border-4 border-primary-blue rounded-lg p-8 shadow-lg">
-    <!-- Decorative corners -->
-    <div class="absolute w-8 h-8 border-t-4 border-l-4 border-muted-gold -top-4 -left-4"></div>
-    <div class="absolute w-8 h-8 border-t-4 border-r-4 border-muted-gold -top-4 -right-4"></div>
-    <div class="absolute w-8 h-8 border-b-4 border-l-4 border-muted-gold -bottom-4 -left-4"></div>
-    <div class="absolute w-8 h-8 border-b-4 border-r-4 border-muted-gold -bottom-4 -right-4"></div>
+<!--<div class="min-h-screen p-8 bg-gradient-to-br from-white to-soft-sky-blue/10">-->
+<!--  &lt;!&ndash; Decorative border container &ndash;&gt;-->
+<!--  <div class="relative border-4 border-primary-blue rounded-lg p-8 shadow-lg">-->
+<!--    &lt;!&ndash; Decorative corners &ndash;&gt;-->
+<!--    <div class="absolute w-8 h-8 border-t-4 border-l-4 border-muted-gold -top-4 -left-4"></div>-->
+<!--    <div class="absolute w-8 h-8 border-t-4 border-r-4 border-muted-gold -top-4 -right-4"></div>-->
+<!--    <div class="absolute w-8 h-8 border-b-4 border-l-4 border-muted-gold -bottom-4 -left-4"></div>-->
+<!--    <div class="absolute w-8 h-8 border-b-4 border-r-4 border-muted-gold -bottom-4 -right-4"></div>-->
 
-    <!-- Main content -->
+<!--    &lt;!&ndash; Main content &ndash;&gt;-->
+<!--    <div class="container mx-auto">-->
+<!--      <div class="mb-8 space-y-4 text-center">-->
+<!--        <h1 class="text-5xl font-fun text-earthy-brown">Upcoming Events</h1>-->
+<!--        <p class="text-xl text-gray-700 max-w-3xl mx-auto">-->
+<!--          Discover the heart and soul of Missouri's river communities through our vibrant local events.-->
+<!--          From seasonal festivals to farmers' markets, experience the best of our historic towns.-->
+<!--        </p>-->
+<!--      </div>-->
+
+<!--      <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-dashed border-soft-sky-blue hover:border-primary-blue transition-colors duration-300">-->
+<!--        <div class="flex justify-between items-center mb-4">-->
+<!--          <button class="text-primary-blue hover:text-blue-800 font-semibold" id="prevMonth">-->
+<!--            &lt; Previous-->
+<!--          </button>-->
+<!--          <h2 class="text-3xl font-fun text-earthy-brown" id="monthYear"></h2>-->
+<!--          <button class="text-primary-blue hover:text-blue-800 font-semibold" id="nextMonth">-->
+<!--            Next &gt;-->
+<!--          </button>-->
+<!--        </div>-->
+
+<!--        <div class="grid grid-cols-7 gap-2" id="calendarGrid"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!-- Event Modal -->
+<div class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50" id="eventModal">
+  <div class="relative top-20 mx-auto p-5 border w-full max-w-xl bg-white rounded-lg shadow-xl">
+    <div class="flex justify-between items-center border-b pb-4">
+      <h3 class="text-2xl font-fun text-earthy-brown" id="modalTitle"></h3>
+      <button class="text-gray-600 hover:text-gray-800 text-2xl" id="closeModal">&times;</button>
+    </div>
+    <div class="mt-4" id="modalContent"></div>
+  </div>
+</div>
+
+<div class="min-h-screen p-8 bg-gradient-to-br from-white to-soft-sky-blue/10">
+  <div class="relative border-4 border-primary-blue rounded-lg p-8 shadow-lg">
     <div class="container mx-auto">
-      <div class="mb-8 space-y-4 text-center">
+      <div class="mb-8 space-y-4 text-center relative">
+
+        <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4" id="left-decoration"></div>
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4" id="right-decoration"></div>
+        <!-- Left decoration -->
+        <!--        <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4">-->
+        <!--          <svg viewBox="0 0 50 50" class="w-16 h-16 transform -rotate-12">-->
+        <!--            <g transform="translate(25, 25)">-->
+        <!--              <circle cx="0" cy="0" r="20" fill="#c0392b"/>-->
+        <!--              <circle cx="-5" cy="-5" r="5" fill="#e74c3c"/>-->
+        <!--              <rect x="-2" y="-25" width="4" height="7" fill="#7f8c8d"/>-->
+        <!--            </g>-->
+        <!--          </svg>-->
+        <!--        </div>-->
+
+        <!--        &lt;!&ndash; Right decoration &ndash;&gt;-->
+        <!--        <div class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4">-->
+        <!--          <svg viewBox="0 0 50 50" class="w-16 h-16 transform rotate-12">-->
+        <!--            <g transform="translate(25, 25)">-->
+        <!--              <path d="M0,-20 L5,-5 L20,0 L5,5 L0,20 L-5,5 L-20,0 L-5,-5 Z"-->
+        <!--                    fill="#fff" stroke="#3498db" stroke-width="2"/>-->
+        <!--              <circle cx="0" cy="0" r="3" fill="#3498db"/>-->
+        <!--            </g>-->
+        <!--          </svg>-->
+        <!--        </div>-->
+
         <h1 class="text-5xl font-fun text-earthy-brown">Upcoming Events</h1>
         <p class="text-xl text-gray-700 max-w-3xl mx-auto">
           Discover the heart and soul of Missouri's river communities through our vibrant local events.
@@ -17,6 +81,7 @@
         </p>
       </div>
 
+      <!-- Rest of your calendar content remains the same -->
       <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-dashed border-soft-sky-blue hover:border-primary-blue transition-colors duration-300">
         <div class="flex justify-between items-center mb-4">
           <button class="text-primary-blue hover:text-blue-800 font-semibold" id="prevMonth">
@@ -31,17 +96,6 @@
         <div class="grid grid-cols-7 gap-2" id="calendarGrid"></div>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Event Modal -->
-<div class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50" id="eventModal">
-  <div class="relative top-20 mx-auto p-5 border w-full max-w-xl bg-white rounded-lg shadow-xl">
-    <div class="flex justify-between items-center border-b pb-4">
-      <h3 class="text-2xl font-fun text-earthy-brown" id="modalTitle"></h3>
-      <button class="text-gray-600 hover:text-gray-800 text-2xl" id="closeModal">&times;</button>
-    </div>
-    <div class="mt-4" id="modalContent"></div>
   </div>
 </div>
 

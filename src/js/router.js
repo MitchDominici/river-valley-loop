@@ -66,6 +66,7 @@ function initializePage(pageName, subPage) {
     case 'events':
       const events = new EventsPage();
       events.initialize();
+      new SeasonalDecorator();
       break;
     case 'home':
       window.homePage = new HomePage();
