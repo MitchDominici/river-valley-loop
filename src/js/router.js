@@ -6,9 +6,6 @@ const components = {
   town: 'src/routes/town.html',
   events: 'src/routes/events.html',
   about: 'src/routes/about.html',
-  contact: 'src/routes/contact.html',
-  todo: 'src/routes/what-to-do.html',
-  directions: 'src/routes/directions.html',
   sponsors: 'src/routes/sponsors.html',
   interactiveMap: 'src/routes/interactive-map.html',
 };
