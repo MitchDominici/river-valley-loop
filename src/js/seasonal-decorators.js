@@ -213,7 +213,7 @@ class SeasonalDecorator {
     }
 
     getCurrentDecoration() {
-        const today = new Date('02-12-2024');
+        const today = new Date();
         const month = (today.getMonth() + 1).toString().padStart(2, '0');
         const day = today.getDate().toString().padStart(2, '0');
         const currentDate = `${month}-${day}`;
