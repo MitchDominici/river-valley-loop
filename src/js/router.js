@@ -10,7 +10,6 @@ const components = {
   todo: 'src/routes/what-to-do.html',
   directions: 'src/routes/directions.html',
   sponsors: 'src/routes/sponsors.html',
-  riverContainer: 'src/components/river-container.html',
   interactiveMap: 'src/routes/interactive-map.html',
 };
 
@@ -128,7 +127,6 @@ window.addEventListener('load', () => {
       console.error('Error adding mobile menu event listener:', e);
     }
   });
-  loadComponent(components.riverContainer, document.getElementById('river-container'));
   loadComponent(components.footer, document.querySelector('.footer'));
   router(false);
 });
