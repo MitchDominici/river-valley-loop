@@ -16,24 +16,10 @@
         min-width: 80%;
       }
 
-      /*#content {*/
-      /*  opacity: 0;*/
-      /*  transform: translateY(20px);*/
-      /*  transition: opacity 0.3s ease-out, transform 0.3s ease-out;*/
-      /*}*/
-
-      /*#content.visible {*/
-      /*  opacity: 1;*/
-      /*  transform: translateY(0);*/
-      /*}*/
-
       .river-border {
         filter: drop-shadow(0 0 10px rgba(199, 234, 243, 0.3));
       }
-      /*main {*/
-      /*  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.8)),*/
-      /*  url('images/wave-background.jpg') no-repeat center/cover;*/
-      /*}*/
+
     </style>
   <link href="./src/css/styles.css" rel="stylesheet"/>
   <link href="./src/css/custom.css" rel="stylesheet"/>
@@ -69,7 +55,7 @@
         />
 
         <!-- Boat -->
-        <g class="boat" id="boat" transform="translate(0, -25)">
+        <g class="boat" id="river-border-boat" transform="translate(0, -25)">
           <path d="M0,0 L8,16 L-8,16 Z" fill="#cf9c67"/>
           <path d="M-12,16 L12,16 L8,24 L-8,24 Z" fill="#6f430e"/>
           <animateMotion dur="60s" repeatCount="indefinite" rotate="auto">
