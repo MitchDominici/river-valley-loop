@@ -10,7 +10,7 @@ class TownsPage {
   }
 
   async loadTowns() {
-      const response = await fetch('data/towns.csv');
+    const response = await fetch('data/towns.csv');
     const csvText = await response.text();
     this.towns = this.parseCSV(csvText);
   }
@@ -22,23 +22,23 @@ class TownsPage {
         .slice(1)
         .filter((line) => line.trim())
         .map((line) => {
-            const values = line.split(',');
-            const town = {};
-            headers.forEach((header, index) => {
-                town[header.trim()] = values[index]?.trim();
-                if (header === 'images') {
-                    town[header] = values[index].split('|');
-                }
-            });
-            return town;
+          const values = line.split(',');
+          const town = {};
+          headers.forEach((header, index) => {
+            town[header.trim()] = values[index]?.trim();
+            if (header === 'images') {
+              town[header] = values[index].split('|');
+            }
+          });
+          return town;
         });
   }
 
-    renderTownGrid() {
-        const townGrid = document.getElementById('townGrid');
-        townGrid.innerHTML = this.towns
-            .map(
-                (town) => `
+  renderTownGrid() {
+    const townGrid = document.getElementById('townGrid');
+    townGrid.innerHTML = this.towns
+        .map(
+            (town) => `
         <div class="town-container cursor-pointer" >
             <div class="town-image-container" onclick="loadComponent(components.town, null, '${town.name}')">
                 <img 
@@ -58,9 +58,9 @@ class TownsPage {
           </div>
         </div>
       `
-            )
-            .join('');
-    }
+        )
+        .join('');
+  }
 }
 
 // window.townsPage = new TownsPage();
