@@ -53,24 +53,22 @@ class TownsPage {
     townGrid.innerHTML = this.towns
         .map(
             (town) => `
-        <div class="town-container cursor-pointer" >
-            <div class="town-image-container" onclick="loadComponent(components.town, null, '${town.name}')">
-                <img 
-                  src="${town.main_image}" 
-                  alt="${town.name}" 
-                  class="town-image"
-                  width="200"
-                  height="200"
-                >
+<div class="town-wrapper">
+    <div class="town-container cursor-pointer" onclick="loadComponent(components.town, null, '${town.name}')">
+        <div class="town-image-container">
+            <img 
+                src="${town.main_image}" 
+                alt="${town.name}" 
+                class="town-image"
+                width="200"
+                height="200"
+            >
+            <div class="town-overlay">
+                <h2 class="text-4xl font-bold font-display">${town.name}</h2>
             </div>
-          <div class="text-center town-text">
-            <h2 class="text-4xl font-bold mb-2 font-display">${town.name}</h2>
-            <div class="flex flex-wrap justify-center gap-2 text-sm">
-              <span class="px-3 py-1 town-badge rounded-full">Est. ${town.established}</span>
-              <span class="px-3 py-1 town-badge rounded-full">Pop. ${town.population}</span>
-            </div>
-          </div>
         </div>
+    </div>
+</div>
       `
         )
         .join('');
