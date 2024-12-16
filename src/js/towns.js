@@ -2,10 +2,13 @@
 class TownsPage {
   constructor() {
     this.towns = [];
+    this.townsCount = 0;
+    this.businessesCount = 0;
   }
 
   async initialize() {
     await this.loadTowns();
+    await this.loadBusinesses('townName');
     this.renderTownGrid();
   }
 
@@ -13,6 +16,17 @@ class TownsPage {
     const response = await fetch('data/towns.csv');
     const csvText = await response.text();
     this.towns = this.parseCSV(csvText);
+    this.townsCount = this.towns.length;
+
+    document.getElementById('towns-count').textContent = this.townsCount;
+  }
+
+  async loadBusinesses() {
+    const response = await fetch('data/businesses.csv');
+    const csvText = await response.text();
+    const businesses = this.parseCSV(csvText);
+    this.businessesCount = businesses.length;
+    document.getElementById('businesses-count').textContent = this.businessesCount;
   }
 
   parseCSV(csvText) {

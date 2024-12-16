@@ -13,7 +13,8 @@
 
       #content {
         min-height: 70vh;
-        min-width: 80%;
+        min-width: 90%;
+        width: 100%;
       }
 
       .river-border {
@@ -35,7 +36,7 @@
 <body>
 <div class="header"></div>
 <main class="min-h-screen">
-  <div class="relative min-h-screen p-8" id="main-page">
+  <div class="relative min-h-screen py-8" id="main-page">
     <div class="absolute inset-0" id="river-boat-container">
       <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 1200">
         <defs>
@@ -64,7 +65,7 @@
         </g>
       </svg>
     </div>
-    <div class="relative z-10 min-h-screen p-8" id="content"></div>
+    <div class="relative z-10 min-h-screen" id="content"></div>
   </div>
 </main>
 <div class="footer"></div>
@@ -78,5 +79,11 @@
 <script defer src="src/js/interactive-map.js"></script>
 <script defer src="src/js/scroll-animations.js"></script>
 <script defer src="src/js/seasonal-decorators.js"></script>
+
+<script>
+  const riverContainer = document.getElementById('river-boat-container');
+
+  riverContainer.style.visibility = 'hidden';
+</script>
 </body>
 </html>

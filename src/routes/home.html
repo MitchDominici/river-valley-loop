@@ -13,7 +13,7 @@
 
           <!-- Define the path for the boat to follow -->
         </defs>
-        <path d="M0,500 Q300,480 600,500 T1200,500 V800 H0 Z" fill="none" id="boatPath"/>
+        <path d="M-50,500 Q300,480 600,500 T1250,500" fill="none" id="boatPath"/>
 
         <!-- Sky background -->
         <rect fill="url(#skyGradient)" height="100%" width="100%"/>
@@ -38,9 +38,9 @@
 
         <!-- Animated boat -->
         <g transform="translate(0, 50)">
-          <!-- Simple boat shape -->
-          <path d="M0,0 L10,20 L-10,20 Z" fill="#2b3d4f"/>
-          <path d="M-14,20 L14,20 L10,28 L-10,28 Z" fill="#34495e"/>
+          <!-- Simple boat shape - now 3x larger -->
+          <path d="M0,0 L30,60 L-30,60 Z" fill="#cf9c67"/>
+          <path d="M-42,60 L42,60 L30,84 L-30,84 Z" fill="#6f430e"/>
           <!-- Animation for the boat -->
           <animateMotion dur="20s" repeatCount="indefinite" rotate="auto">
             <mpath xlink:href="#boatPath"/>
@@ -85,7 +85,7 @@
     </div>
   </div>
 
-  <div class="container mx-auto px-4 py-16">
+  <div class="container mx-auto px-4 py-16 hidden">
       <section class="mb-16 transition-all duration-700 ease-out translate-y-4" data-scroll-animate>
           <h2 class="font-fun text-5xl md:text-6xl mb-10 text-primary-blue">Local Events</h2>
       <!-- Your existing content -->

@@ -81,9 +81,6 @@ function initializePage(pageName, subPage) {
       new SeasonalDecorator();
       break;
     case 'home':
-      // window.homePage = new HomePage();
-      // window.homePage.initialize();
-
       riverContainer.style.visibility = 'hidden';
       break;
     case 'what-to-do':
