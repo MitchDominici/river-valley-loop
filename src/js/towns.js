@@ -22,22 +22,23 @@ class TownsPage {
         .slice(1)
         .filter((line) => line.trim())
         .map((line) => {
-          const values = line.split(',');
-          const town = {};
-          headers.forEach((header, index) => {
-            town[header.trim()] = values[index]?.trim();
-            if (header === 'images') {
-              town[header] = values[index].split('|');
-            }
-          });
-          return town;
+            const values = line.split(',');
+            const town = {};
+            headers.forEach((header, index) => {
+                town[header.trim()] = values[index]?.trim();
+                if (header === 'images') {
+                    town[header] = values[index].split('|');
+                }
+            });
+            return town;
         });
   }
 
     renderTownGrid() {
         const townGrid = document.getElementById('townGrid');
         townGrid.innerHTML = this.towns
-            .map(town => `
+            .map(
+                (town) => `
         <div class="town-container cursor-pointer" onclick="loadComponent(components.town, null, '${town.name}')">
             <div class="town-image-container">
         <img 
@@ -56,7 +57,8 @@ class TownsPage {
             </div>
           </div>
         </div>
-      `)
+      `
+            )
             .join('');
     }
 }

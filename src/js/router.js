@@ -10,6 +10,7 @@ const components = {
   todo: 'src/routes/what-to-do.html',
   directions: 'src/routes/directions.html',
   sponsors: 'src/routes/sponsors.html',
+  riverContainer: 'src/components/river-container.html',
   interactiveMap: 'src/routes/interactive-map.html',
 };
 
@@ -53,6 +54,9 @@ function updateHistory(pageName, subPage) {
 }
 
 function initializePage(pageName, subPage) {
+  const riverContainer = document.getElementById('river-boat-container');
+
+  riverContainer.style.visibility = 'visible';
   switch (pageName) {
     case 'towns':
       window.townsPage = new TownsPage();
@@ -71,6 +75,8 @@ function initializePage(pageName, subPage) {
     case 'home':
       window.homePage = new HomePage();
       window.homePage.initialize();
+
+      riverContainer.style.visibility = 'hidden';
       break;
     case 'what-to-do':
       window.whatToDoPage = new WhatToDoPage();
@@ -122,6 +128,7 @@ window.addEventListener('load', () => {
       console.error('Error adding mobile menu event listener:', e);
     }
   });
+  loadComponent(components.riverContainer, document.getElementById('river-container'));
   loadComponent(components.footer, document.querySelector('.footer'));
   router(false);
 });
@@ -133,4 +140,3 @@ window.addEventListener('popstate', (event) => {
     loadComponent(components[pageName], null, subPage);
   }
 });
-

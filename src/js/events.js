@@ -52,8 +52,8 @@ class EventsPage {
         const headers = lines[0].split('|');
         return lines
             .slice(1)
-            .filter(line => line.trim())
-            .map(line => {
+            .filter((line) => line.trim())
+            .map((line) => {
                 const values = line.split('|');
                 const event = {};
                 headers.forEach((header, index) => {
@@ -66,7 +66,7 @@ class EventsPage {
     renderCalendar() {
         this.monthYearElement.textContent = this.currentDate.toLocaleString('default', {
             month: 'long',
-            year: 'numeric'
+            year: 'numeric',
         });
 
         const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
@@ -74,7 +74,7 @@ class EventsPage {
 
         // Render weekday headers
         this.calendarGrid.innerHTML = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-            .map(day => `<div class="text-center font-semibold py-2 text-primary-blue">${day}</div>`)
+            .map((day) => `<div class="text-center font-semibold py-2 text-primary-blue">${day}</div>`)
             .join('');
 
         // Add empty cells for days before the first of the month
@@ -88,7 +88,7 @@ class EventsPage {
         for (let day = 1; day <= lastDay.getDate(); day++) {
             const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day);
             const dayEvents = this.events.filter(
-                event => new Date(event['Date and Time']).toDateString() === date.toDateString()
+                (event) => new Date(event['Date and Time']).toDateString() === date.toDateString()
             );
 
             const isToday = date.toDateString() === new Date().toDateString();
@@ -101,11 +101,15 @@ class EventsPage {
 
             dayElement.innerHTML = `
                 <div class="font-medium ${isToday ? 'text-primary-blue' : ''}">${day}</div>
-                ${dayEvents.length ? `
+                ${
+                dayEvents.length
+                    ? `
                     <div class="text-sm text-primary-blue mt-1">
                         ${dayEvents.length} event${dayEvents.length > 1 ? 's' : ''}
                     </div>
-                ` : ''}
+                `
+                    : ''
+            }
             `;
 
             if (dayEvents.length) {
@@ -119,7 +123,8 @@ class EventsPage {
     showEvents(events) {
         this.modalTitle.textContent = new Date(events[0]['Date and Time']).toLocaleDateString();
         this.modalContent.innerHTML = events
-            .map(event => `
+            .map(
+                (event) => `
                 <div class="mb-6 p-6 border rounded-lg hover:shadow-lg transition-shadow">
                     <h4 class="text-xl font-fun text-earthy-brown mb-2">${event['Event Name']}</h4>
                     <p class="text-primary-blue">${new Date(event['Date and Time']).toLocaleTimeString()}</p>
@@ -139,16 +144,20 @@ class EventsPage {
                         </div>
                     </div>
                     <div class="mt-4 flex flex-wrap gap-2">
-                        ${event['Tags'].split(',')
-                .map(tag => `
+                        ${event['Tags']
+                    .split(',')
+                    .map(
+                        (tag) => `
                                 <span class="px-3 py-1 bg-blue-50 text-primary-blue rounded-full text-sm">
                                     ${tag.trim()}
                                 </span>
-                            `)
-                .join('')}
+                            `
+                    )
+                    .join('')}
                     </div>
                 </div>
-            `)
+            `
+            )
             .join('');
 
         this.modal.classList.remove('hidden');

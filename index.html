@@ -34,9 +34,35 @@
 </head>
 <body>
 <div class="header"></div>
-<main class="min-h-screen" id="content">
-  <!--  <div class=" mx-auto bg-white rounded-lg shadow-lg p-8" id="content">-->
-  <!--  </div>-->
+<main class="min-h-screen">
+  <div class="relative min-h-screen p-8" id="main-page">
+    <div class="absolute inset-0" id="river-boat-container">
+      <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 1200">
+        <defs>
+          <pattern height="1200" id="riverPattern" patternUnits="userSpaceOnUse" width="1200">
+            <rect fill="white" height="1200" opacity="0.2" width="1200" x="0" y="0"/>
+            <image class="w-full h-full" href="../../images/river-valley.jpg" opacity="0.2"/>
+          </pattern>
+        </defs>
+
+        <path class="river-border" d="M50,50 Q300,80 600,50 T1150,50 L1150,1150 Q900,1120 600,1150 T50,1150 L50,45"
+              fill="url(#riverPattern)"
+              id="river-border"
+              stroke="#c7eaf3"
+              stroke-width="8"/>
+
+        <!-- Boat -->
+        <g class="boat" id="boat" transform="translate(0, -25)">
+          <path d="M0,0 L8,16 L-8,16 Z" fill="#cf9c67"/>
+          <path d="M-12,16 L12,16 L8,24 L-8,24 Z" fill="#6f430e"/>
+          <animateMotion dur="60s" repeatCount="indefinite" rotate="auto">
+            <mpath xlink:href="#river-border"/>
+          </animateMotion>
+        </g>
+      </svg>
+    </div>
+    <div class="relative z-10 min-h-screen p-8 " id="content">
+    </div>
 </main>
 <div class="footer"></div>
 

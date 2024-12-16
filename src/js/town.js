@@ -133,19 +133,24 @@ class TownPage {
 
     // Render business list
     const businessHTML = this.businesses
-        .map(business => `
+        .map(
+            (business) => `
         <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
           <div class="flex items-center justify-between">
             <div class="flex-1">
-              ${business.website ? `
+              ${
+                business.website
+                    ? `
                 <a href="${business.website.startsWith('http') ? business.website : 'https://' + business.website}" 
                    target="_blank" 
                    class="flex items-center justify-between">
                    <h3 class="text-xl font-bold text-blue-900">${business.name}</h3>
                 </a>
-              ` : `
+              `
+                    : `
                 <h3 class="text-xl font-bold text-blue-900">${business.name}</h3>
-              `}
+              `
+            }
               <p class="text-gray-600">${business.type}</p>
               ${business.address ? `<p class="text-sm text-gray-500 mt-2">${business.address} ${business.town}, ${business.state} ${business.zip}</p>` : ''}
             </div>
@@ -153,15 +158,20 @@ class TownPage {
               <div class="flex gap-3">
                 ${this.getSocialIcons(business)}
               </div>
-              ${business.website ? `
+              ${
+                business.website
+                    ? `
                 <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                 </svg>
-              ` : ''}
+              `
+                    : ''
+            }
             </div>
           </div>
         </div>
-      `)
+      `
+        )
         .join('');
     document.getElementById('businessList').innerHTML = businessHTML;
   }

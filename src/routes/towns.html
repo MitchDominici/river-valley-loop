@@ -1,67 +1,40 @@
 <!-- towns.html -->
-<div class="relative min-h-screen p-8" id="towns-page">
-  <div class="absolute inset-0">
-    <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 1200">
-      <defs>
-        <pattern height="1200" id="riverPattern" patternUnits="userSpaceOnUse" width="1200">
-          <rect fill="white" height="1200" opacity="0.2" width="1200" x="0" y="0"/>
-          <image class="w-full h-full" href="../../images/river-valley.jpg" opacity="0.2"/>
-        </pattern>
-      </defs>
 
-      <path class="river-border" d="M50,50 Q300,80 600,50 T1150,50 L1150,1150 Q900,1120 600,1150 T50,1150 L50,45"
-            fill="url(#riverPattern)"
-            id="river-border"
-            stroke="#c7eaf3"
-            stroke-width="8"/>
-
-      <!-- Boat -->
-      <g class="boat" id="boat" transform="translate(0, -25)">
-        <path d="M0,0 L8,16 L-8,16 Z" fill="#cf9c67"/>
-        <path d="M-12,16 L12,16 L8,24 L-8,24 Z" fill="#6f430e"/>
-        <animateMotion dur="60s" repeatCount="indefinite" rotate="auto">
-          <mpath xlink:href="#river-border"/>
-        </animateMotion>
-      </g>
-    </svg>
+<div id="towns-page">
+  <!-- Header section -->
+  <div class="text-center mb-16">
+    <h1 class="text-6xl mb-6 font-fun text-primary-blue">Historic River Towns</h1>
+    <p class="text-3xl text-gray-700 max-w-3xl mx-auto">
+      Discover the unique charm and rich history of the communities along the Missouri River Valley
+      Loop.
+    </p>
   </div>
 
-  <div class="relative z-10" id="towns-main-content">
-    <!-- Header section -->
-    <div class="text-center mb-16">
-      <h1 class="text-6xl mb-6 font-fun text-primary-blue">Historic River Towns</h1>
-      <p class="text-3xl text-gray-700 max-w-3xl mx-auto">
-        Discover the unique charm and rich history of the communities along the Missouri River Valley Loop.
-      </p>
+  <!-- Stats bar -->
+  <div class="grid grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+    <div class="text-center">
+      <h3 class="text-4xl font-bold text-primary-blue">10</h3>
+      <p class="text-gray-600 font-display text-3xl">Towns</p>
     </div>
+    <div class="text-center">
+      <h3 class="text-4xl font-bold text-primary-blue">25+</h3>
+      <p class="text-gray-600 font-display text-3xl">Small Businesses</p>
+    </div>
+    <div class="text-center">
+      <h3 class="text-4xl font-bold text-primary-blue">90+</h3>
+      <p class="text-gray-600 font-display text-3xl">Miles of Adventure</p>
+    </div>
+  </div>
 
-    <!-- Stats bar -->
-    <div class="grid grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-      <div class="text-center">
-        <h3 class="text-4xl font-bold text-primary-blue">10</h3>
-        <p class="text-gray-600 font-display text-3xl">Towns</p>
-      </div>
-      <div class="text-center">
-        <h3 class="text-4xl font-bold text-primary-blue">25+</h3>
-        <p class="text-gray-600 font-display text-3xl">Small Businesses</p>
-      </div>
-      <div class="text-center">
-        <h3 class="text-4xl font-bold text-primary-blue">90+</h3>
-        <p class="text-gray-600 font-display text-3xl">Miles of Adventure</p>
-      </div>
-    </div>
-
-    <!-- Towns grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="townGrid">
-      <!-- Town cards will be injected here by JavaScript -->
-    </div>
-    </div>
+  <!-- Towns grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="townGrid">
+    <!-- Town cards will be injected here by JavaScript -->
+  </div>
 </div>
+
 <style>
   .river-border {
     filter: drop-shadow(0 0 10px rgba(199, 234, 243, 0.3));
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.8)),
-    url('../../images/wave-background.jpg') no-repeat center/cover;
   }
 
   .town-container {
