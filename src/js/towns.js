@@ -2,17 +2,31 @@
 class TownsPage {
   constructor() {
     this.towns = [];
+    this.townsCount = 0;
+    this.businessesCount = 0;
   }
 
   async initialize() {
     await this.loadTowns();
+    await this.loadBusinesses('townName');
     this.renderTownGrid();
   }
 
   async loadTowns() {
-    const response = await fetch('/data/towns/towns.csv');
+    const response = await fetch('data/towns.csv');
     const csvText = await response.text();
     this.towns = this.parseCSV(csvText);
+    this.townsCount = this.towns.length;
+
+    document.getElementById('towns-count').textContent = this.townsCount;
+  }
+
+  async loadBusinesses() {
+    const response = await fetch('data/businesses.csv');
+    const csvText = await response.text();
+    const businesses = this.parseCSV(csvText);
+    this.businessesCount = businesses.length;
+    document.getElementById('businesses-count').textContent = this.businessesCount;
   }
 
   parseCSV(csvText) {
@@ -34,30 +48,31 @@ class TownsPage {
         });
   }
 
-    renderTownGrid() {
-        const townGrid = document.getElementById('townGrid');
-        townGrid.innerHTML = this.towns
-            .map(town => `
-        <div class="town-container cursor-pointer" onclick="loadComponent(components.town, null, '${town.name}')">
-          <div class="town-image-container">
+  renderTownGrid() {
+    const townGrid = document.getElementById('townGrid');
+    townGrid.innerHTML = this.towns
+        .map(
+            (town) => `
+<div class="town-wrapper">
+    <div class="town-container cursor-pointer" onclick="loadComponent(components.town, null, '${town.name}')">
+        <div class="town-image-container">
             <img 
-              src="${town.main_image}" 
-              alt="${town.name}" 
-              class="town-image"
-              loading="lazy"
+                src="${town.main_image}" 
+                alt="${town.name}" 
+                class="town-image"
+                width="200"
+                height="200"
             >
-          </div>
-          <div class="text-center town-text">
-            <h2 class="text-4xl font-bold mb-2 font-display">${town.name}</h2>
-            <div class="flex flex-wrap justify-center gap-2 text-sm">
-              <span class="px-3 py-1 town-badge rounded-full">Est. ${town.established}</span>
-              <span class="px-3 py-1 town-badge rounded-full">Pop. ${town.population}</span>
+            <div class="town-overlay">
+                <h2 class="text-4xl font-bold font-display">${town.name}</h2>
             </div>
-          </div>
         </div>
-      `)
-            .join('');
-    }
+    </div>
+</div>
+      `
+        )
+        .join('');
+  }
 }
 
 // window.townsPage = new TownsPage();

@@ -1,85 +1,71 @@
-<div class="relative min-h-screen p-8">
-  <!-- River border with boat -->
-  <div class="absolute inset-0">
-    <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 1200">
-      <path class="river-border" d="M50,50 Q300,80 600,50 T1150,50 L1150,1150 Q900,1120 600,1150 T50,1150 L50,45"
-            fill="white" id="river-border" stroke="#c7eaf3" stroke-width="12"/>
-      <g class="boat" id="boat" transform="translate(0, -25)">
-        <path d="M0,0 L8,16 L-8,16 Z" fill="#2563eb"/>
-        <path d="M-12,16 L12,16 L8,24 L-8,24 Z" fill="#2563eb"/>
-        <animateMotion dur="60s" repeatCount="indefinite" rotate="auto">
-          <mpath xlink:href="#river-border"/>
-        </animateMotion>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Main content -->
-  <div class="relative z-10">
-    <!-- Town Header Info -->
-    <div class="container mx-auto px-4 pt-16">
-      <div class="town-card bg-white rounded-lg shadow-lg p-8 relative overflow-hidden border-2 border-dashed border-blue-200 hover:border-blue-400 transition-colors duration-300">
-        <div class="flex flex-col md:flex-row gap-8">
-          <!-- Town Shape with Main Image -->
-          <div class="relative w-full md:w-1/2 aspect-square">
-            <div class="absolute inset-0 p-4">
-              <div class="relative h-full transform hover:scale-105 transition-transform duration-300">
-                <img alt="" class="w-full h-full object-cover rounded-lg border-4 border-primary-blue shadow-xl"
-                     id="mainImage"/>
-              </div>
+<!-- Main content -->
+<div id="town-page">
+  <!-- Town Header Info -->
+  <div class="container mx-auto px-4 pt-16 ">
+    <div
+            class="town-card bg-soft-periwinkle rounded-lg shadow-lg p-8 mt-8 relative overflow-hidden border-2 border-dashed border-earthy-brown hover:border-warm-taupe transition-colors duration-300"
+    >
+      <div class="flex flex-col md:flex-row gap-8 ">
+        <!-- Town Shape with Main Image -->
+        <div class="relative w-full md:w-1/2 aspect-square">
+          <div class="absolute inset-0 p-4">
+            <div
+                    class="relative h-full transform hover:scale-105 transition-transform duration-300"
+            >
+              <img
+                      alt="Town Main Image"
+                      class="w-full h-full object-cover rounded-lg border-4 border-primary-blue shadow-xl"
+                      id="mainImage"
+              />
             </div>
           </div>
+        </div>
 
-          <!-- Town Info -->
-          <div class="w-full md:w-1/2">
-            <h1 class="text-5xl font-fun text-earthy-brown mb-4" id="townName"></h1>
-            <div class="flex gap-4 mb-6">
-              <div class="stat-badge">
-                <div class="text-sm text-gray-600">Population</div>
-                <div class="text-2xl font-bold text-primary-blue" id="population"></div>
-              </div>
-              <div class="stat-badge">
-                <div class="text-sm text-gray-600">County</div>
-                <div class="text-2xl font-bold text-primary-blue" id="county"></div>
-              </div>
-              <div class="stat-badge">
-                <div class="text-sm text-gray-600">Founded</div>
-                <div class="text-2xl font-bold text-primary-blue" id="established"></div>
-              </div>
+        <!-- Town Info -->
+        <div class="w-full md:w-1/2 ">
+          <h1 class="text-5xl font-fun text-primary-blue mb-4" id="townName"></h1>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="stat-badge">
+              <div class="text-sm text-gray-600">Population</div>
+              <div class="text-2xl font-bold text-primary-blue" id="population"></div>
             </div>
-            <div class="description-box">
-              <p class="text-gray-700 text-lg" id="description"></p>
+            <div class="stat-badge">
+              <div class="text-sm text-gray-600">County</div>
+              <div class="text-2xl font-bold text-primary-blue" id="county"></div>
             </div>
+            <div class="stat-badge">
+              <div class="text-sm text-gray-600">Founded</div>
+              <div class="text-2xl font-bold text-primary-blue" id="established"></div>
+            </div>
+          </div>
+          <div class="description-box">
+            <p class="text-gray-700 text-lg" id="description"></p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Image Gallery -->
-    <div class="container mx-auto px-4 py-12">
-      <h2 class="text-3xl font-fun text-earthy-brown mb-6">Gallery</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="imageGallery"></div>
-    </div>
+  <!-- Image Gallery -->
+  <div class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl font-fun text-primary-blue mb-6">Gallery</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="imageGallery"></div>
+  </div>
 
-    <!-- Things to Do -->
-    <div class="container mx-auto px-4 py-12">
-      <h2 class="text-3xl font-fun text-earthy-brown mb-6">Things to do in <span id="townNameDo"></span></h2>
-      <div class="mb-4 text-gray-600 font-display text-xl">
-        These are businesses we have personally visited and will vouch for their great service!
-      </div>
-      <div class="space-y-4" id="businessList"></div>
+  <!-- Things to Do -->
+  <div class="container mx-auto px-4 py-12">
+    <h2 class="text-3xl font-fun text-primary-blue mb-6">
+      Things to do in <span id="townNameDo"></span>
+    </h2>
+    <div class="mb-4 text-gray-600 font-display text-xl">
+      These are businesses we have personally visited and will vouch for their great service!
     </div>
+    <div class="space-y-4" id="businessList"></div>
   </div>
 </div>
 
 <style>
-  .river-border {
-    filter: drop-shadow(0 0 10px rgba(199, 234, 243, 0.3));
-  }
 
-  .town-card {
-    background: linear-gradient(135deg, white 0%, #f0f9ff 100%);
-  }
 
   .stat-badge {
     text-align: center;
@@ -100,7 +86,7 @@
     background: white;
     padding: 1.5rem;
     border-radius: 0.5rem;
-    border: 2px dashed #c7eaf3;
+    border: 2px dashed #6f430e;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 1rem;
   }

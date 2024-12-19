@@ -1,106 +1,130 @@
 <!-- towns.html -->
-<div class="relative min-h-screen p-8" id="towns-page">
-  <div class="absolute inset-0">
-    <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 1200">
-      <!-- Border path first -->
-      <path class="river-border" d="M50,50 Q300,80 600,50 T1150,50 L1150,1150 Q900,1120 600,1150 T50,1150 L50,45" fill="white" id="river-border" stroke="#c7eaf3"
-            stroke-width="12"/>
-
-      <!--Boat-->
-      <g class="boat" id="boat" transform="translate(0, -25)">
-        <path d="M0,0 L8,16 L-8,16 Z" fill="#2563eb"/>
-        <path d="M-12,16 L12,16 L8,24 L-8,24 Z" fill="#2563eb"/>
-        <animateMotion dur="60s" repeatCount="indefinite" rotate="auto">
-          <mpath xlink:href="#river-border"/>
-        </animateMotion>
-      </g>
-    </svg>
+<div id="towns-page">
+  <!-- Header section -->
+  <div class="text-center my-8">
+    <h1 class="text-6xl mb-6 font-fun text-primary-blue">Historic River Towns</h1>
+    <p class="text-3xl text-gray-700 max-w-3xl mx-auto">
+      Discover the unique charm and rich history of the communities along the Missouri River Valley
+      Loop.
+    </p>
   </div>
 
-  <div class="relative z-10" id="towns-main-content">
-    <!-- Header section -->
-    <div class="text-center mb-16">
-      <h1 class="text-5xl mb-6 font-fun text-earthy-brown">Historic River Towns</h1>
-      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-        Discover the unique charm and rich history of the communities along the Missouri River Valley Loop.
-      </p>
+  <!-- Stats bar -->
+  <div class="grid grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
+    <div class="text-center">
+      <h3 class="text-4xl font-bold text-primary-blue" id="towns-count">8</h3>
+      <p class="text-gray-600 font-display text-3xl">Towns</p>
     </div>
+    <div class="text-center">
+      <h3 class="text-4xl font-bold text-primary-blue" id="businesses-count">25+</h3>
+      <p class="text-gray-600 font-display text-3xl">Small Businesses</p>
+    </div>
+    <div class="text-center">
+      <h3 class="text-4xl font-bold text-primary-blue">75+</h3>
+      <p class="text-gray-600 font-display text-3xl">Miles of Adventure</p>
+    </div>
+  </div>
 
-    <!-- Stats bar -->
-    <div class="grid grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-      <div class="text-center">
-        <h3 class="text-4xl font-bold text-primary-blue">10</h3>
-        <p class="text-gray-600 font-display text-3xl">Towns</p>
-      </div>
-      <div class="text-center">
-        <h3 class="text-4xl font-bold text-primary-blue">25+</h3>
-        <p class="text-gray-600 font-display text-3xl">Small Businesses</p>
-      </div>
-      <div class="text-center">
-        <h3 class="text-4xl font-bold text-primary-blue">90+</h3>
-        <p class="text-gray-600 font-display text-3xl">Miles of Adventure</p>
-      </div>
-    </div>
-
-    <!-- Towns grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="townGrid">
-      <!-- Town cards will be injected here by JavaScript -->
-    </div>
-    </div>
+  <!-- Towns grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 px-16" id="townGrid">
+    <!-- Town cards will be injected here by JavaScript -->
+  </div>
 </div>
+
 <style>
-  .river-border {
-    filter: drop-shadow(0 0 10px rgba(199, 234, 243, 0.3));
+  .town-wrapper {
+    padding: 8px;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .town-container {
     position: relative;
-    width: 300px;
-    height: 350px;
-    margin: 0 auto;
-    background: #adb4e1;
-    padding: 2rem;
-    border-radius: 8px;
+    width: 90%;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: #0871e4 4px dashed;
     transition: transform 0.3s ease;
   }
 
   .town-container:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 
   .town-image-container {
     position: relative;
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-  }
-
-  .town-image-container::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    bottom: -4px;
-    left: -4px;
-    border: 2px dashed #3b82f6;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
   }
 
   .town-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #3b82f6;
   }
 
-  .town-text {
+  .town-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 2rem;
     color: white;
-    margin-top: 1rem;
   }
 
-  .town-badge {
-    background: #7087bb;
-    color: white;
-  }
+  /*.town-container {*/
+  /*  position: relative;*/
+  /*  width: 300px;*/
+  /*  height: 350px;*/
+  /*  margin: 0 auto;*/
+  /*  background: #adb4e1;*/
+  /*  padding: 2rem;*/
+  /*  border-radius: 8px;*/
+  /*  transition: transform 0.3s ease;*/
+  /*}*/
+
+  /*.town-container:hover {*/
+  /*  transform: scale(1.05);*/
+  /*}*/
+
+  /*.town-image-container {*/
+  /*  position: relative;*/
+  /*  width: 240px;*/
+  /*  height: 180px;*/
+  /*  margin: 0 auto;*/
+  /*}*/
+
+  /*.town-image-container::before {*/
+  /*  content: '';*/
+  /*  position: absolute;*/
+  /*  top: -4px;*/
+  /*  right: -4px;*/
+  /*  bottom: -4px;*/
+  /*  left: -4px;*/
+  /*  border: 2px dashed #0871e4;*/
+  /*  border-radius: 30px;*/
+  /*}*/
+
+  /*.town-image {*/
+  /*  width: 100%;*/
+  /*  height: 100%;*/
+  /*  object-fit: cover;*/
+  /*  border-radius: 25px;*/
+  /*  border: 4px solid #0871e4;*/
+  /*}*/
+
+  /*.town-text {*/
+  /*  color: white;*/
+  /*  margin-top: 1rem;*/
+  /*}*/
+
+  /*.town-badge {*/
+  /*  background: #7087bb;*/
+  /*  color: white;*/
+  /*  padding: 0.5rem 1rem;*/
+  /*  border-radius: 4px;*/
+  /*}*/
 </style>

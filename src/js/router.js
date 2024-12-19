@@ -6,9 +6,6 @@ const components = {
   town: 'src/routes/town.html',
   events: 'src/routes/events.html',
   about: 'src/routes/about.html',
-  contact: 'src/routes/contact.html',
-  todo: 'src/routes/what-to-do.html',
-  directions: 'src/routes/directions.html',
   sponsors: 'src/routes/sponsors.html',
   interactiveMap: 'src/routes/interactive-map.html',
 };
@@ -19,8 +16,17 @@ async function loadComponent(url, targetElement, subPage) {
   try {
     const response = await fetch(url);
     const html = await response.text();
+
     targetElement = targetElement || document.getElementById('content');
+    targetElement.style.opacity = 0;
+
     targetElement.innerHTML = html;
+    targetElement.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
+    targetElement.style.transform = 'translateY(20px)';
+    requestAnimationFrame(() => {
+      targetElement.style.opacity = 1;
+      targetElement.style.transform = 'translateY(0)';
+    });
 
     const pageName = url.split('/').pop().replace('.html', '');
 
@@ -53,6 +59,9 @@ function updateHistory(pageName, subPage) {
 }
 
 function initializePage(pageName, subPage) {
+  const riverContainer = document.getElementById('river-boat-container');
+
+  riverContainer.style.visibility = 'hidden';
   switch (pageName) {
     case 'towns':
       window.townsPage = new TownsPage();
@@ -66,16 +75,20 @@ function initializePage(pageName, subPage) {
     case 'events':
       const events = new EventsPage();
       events.initialize();
+      new SeasonalDecorator();
       break;
     case 'home':
-      window.homePage = new HomePage();
-      window.homePage.initialize();
+      riverContainer.style.visibility = 'hidden';
       break;
     case 'what-to-do':
       window.whatToDoPage = new WhatToDoPage();
       window.whatToDoPage.initialize();
     default:
       break;
+  }
+
+  if (pageName !== 'home') {
+    riverContainer.style.visibility = 'visible';
   }
 }
 
@@ -101,6 +114,7 @@ function router(updateHistory = true) {
     console.error('Invalid path:', path);
     return;
   }
+
 
   loadComponent(components[path], document.getElementById('content'), subPage);
 
@@ -132,4 +146,3 @@ window.addEventListener('popstate', (event) => {
     loadComponent(components[pageName], null, subPage);
   }
 });
-
